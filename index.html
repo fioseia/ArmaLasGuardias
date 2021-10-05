@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ShiftCalendar</h1>
+    <div class="mainContainer">
+        <form action="" id="hospitalNameForm">
+            <div>
+                <label for="hospitalName">Ingrese nombre del Hospital para guardar sus preferencias en un futuro</label>
+                <input type="text" name="hospitalName" id="hospitalName__nombre" placeholder="Nombre del Hospital">
+            </div>
+            <div>
+                <label for="sectorName">Nombre del sector: 
+                <input type="text" name="sectorName" id="sectorName">
+                <label for="sectorCantidadMedicos">Cantidad de medicos de guardia en el sector:
+                <input type="number" name="sectorCantidadMedicos" id="sectorCantidadMedicos" placeholder="1"><br>
+                <input type="button" value="Cargar" id="sectoresBtn">
+            
+                <div class="sectoresDatos" id="sectoresDatos"></div>    
+            </div>
+            <input type="submit" value="Crear">
+        </form>
+        <div class="gruposRotacion" id="gruposRotacion">
+            <label for="gruposRotacionCheck">
+                <input type="radio" name="gruposRotacionCheck" id="gruposRotacionCheckNo" value="no" checked>No
+                <input type="radio" name="gruposRotacionCheck" id="gruposRotacionCheckSi" value="si">Si
+            </label>
+            <div class="gruposRotacionSi">
+                <input type="text" name="gruposRotacionName" id="gruposRotacionName">
+                <input type="button" value="Crear" id="gruposBtn">
+            </div>
+        </div>
+        <div class="datosMedicos">
+            <input type="text" name="medico__nombre" id="medico__nombre">
+            <input type="number" name="medico__guardiasSemana" id="medico__guardiasSemana">
+            <input type="number" name="medico__guardiasFinde" id="medico__guardiasFinde">
+            <select name="medico__sector" id="medico__grupo">
+                <option value="ninguno">Ninguno</option>
+            </select>
+            <input type="number" name="medico__diaLibre" id="medico__diaLibre">
+            <select name="medico__diaFijo" id="medico__diaFijo">
+                <option value="ninguno">Ninguno</option>
+                <option value="1">Lunes</option>
+                <option value="2">Martes</option>
+                <option value="3">Miercoles</option>
+                <option value="4">Jueves</option>
+                <option value="5">Viernes</option>
+                <option value="6">Sabado</option>
+                <option value="0">Domingo</option>
+            </select>
+            <select name="medico__sector" id="medico__sector">
+                <option value="ninguno">Ninguno</option>                
+            </select>
+
+            <input type="button" value="Cargar" id="medico__cargar">
+        </div>
+        <div class="tablaDatos" id="tablaDatos">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Guardias de semana</th>
+                        <th>Guardias de finde</th>
+                        <th>Grupo de rotacion</th>
+                        <th>Dia libre del mes</th>
+                        <th>Dia fijo de guardia</th>
+                        <th>Sector fijo de guardia</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/funciones.js"></script>
+    <script src="js/constructores.js"></script>
+    <script src="js/globales.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
