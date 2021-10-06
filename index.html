@@ -10,6 +10,12 @@
 <body>
     <h1>ShiftCalendar</h1>
     <div class="mainContainer">
+        <div action="" class="selectMonth">
+            <div class="selectMonth__btn" id="prev-month">&#9664</div>
+            <div class="selectMonth__info" id="calendarMonth"></div>
+            <div class="selectMonth__info" id="calendarYear"></div>
+            <div class="selectMonth__btn" id="next-month">&#9654</div>
+        </div>
         <form action="" id="hospitalNameForm">
             <div>
                 <label for="hospitalName">Ingrese nombre del Hospital para guardar sus preferencias en un futuro</label>
@@ -73,11 +79,39 @@
                         <th>Sector fijo de guardia</th>
                     </tr>
                 </thead>
-                <tbody>
-
-                </tbody>
+                <tbody></tbody>
             </table>
         </div>
+    </div>
+    <div>
+        <input type="button" value="vamos" id="btn-vamos">
+    </div>
+
+    <!-- Calendario -->
+    <div class="calendar">
+        <div class="calendar__header">
+            <div class="calendar__month" id="calendarMonth"></div>
+            <div class="calendar__year" id="CalendarYear"></div>
+        </div>
+        <table class="seccionesCalendario">
+            <tr>
+                <td class="sectores">
+                    <div>Sectores</div>
+                </td>
+                <td>
+                    <div class="calendar__week">
+                        <div class="calendar__day calendar__item">L</div>
+                        <div class="calendar__day calendar__item">M</div>
+                        <div class="calendar__day calendar__item">M</div>
+                        <div class="calendar__day calendar__item">J</div>
+                        <div class="calendar__day calendar__item">V</div>
+                        <div class="calendar__day calendar__item">S</div>
+                        <div class="calendar__day calendar__item">D</div>
+                    </div>
+                    <div class="calendar__days" id="calendarDay"></div>
+                </td>
+            </tr>
+        </table>
     </div>
     
 
