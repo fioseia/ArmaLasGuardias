@@ -2,15 +2,6 @@ function numberSectores(value) {
     return parseInt(value)
 };
 
-/*function crearOpciones(array) {
-    arrayGrupos = [];
-    for (const opcion of array) {
-        $('#medico__sector').append(`
-        <option value="${opcion.value}">${opcion.value}</option>
-        `)
-    }
-};*/
-
 function crearGrupos() {
     for (grupo of arrayGrupos) {
         let i = arrayGrupos.indexOf(grupo);
@@ -23,9 +14,6 @@ function crearGrupos() {
         })
     }
 }
-
-
-
 
 function sumarGuardiasDia() {
     let medicosPorSector = 0;
@@ -46,15 +34,10 @@ function elegirMedicoAleatorio(array) {
     return array[Math.floor(Math.random() * array.length)]
 }
 
-// function mismoGrupo() {
-//     if 
-// }
-
-
 function comprobarCondiciones(i) {
     let dia = i;
     let diaDeLaSemana = arrayDias[dia][1]
-    while (arrayDias[i][0] == false) {
+    while (arrayDias[dia][0] == false) {
         let medico = elegirMedicoAleatorio(arrayMedicos)
         let yaEstaDeGuardias = yaEstaDeGuardia(medico, dia);
         let yaEstaDiaAnterior = diaAnterior(medico, dia)
@@ -92,6 +75,8 @@ function diaAnterior(medico, i) {
     if (i >= 1) {
         let diaAnterior = (i - 1)
         return arrayDias[diaAnterior][2].includes(medico.nombre)
+    } else if (i = 0) {
+        return false
     }
 }
 

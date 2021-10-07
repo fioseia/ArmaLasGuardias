@@ -27,7 +27,6 @@ $('#sectoresBtn').click(function () {
 })
 
 
-
 // - Preguntar si desea crear grupos de rotación para que los médicos de dicho grupo no realicen guardias los mismos días y tomar datos de los usuarios cargados (Para que no estén postguardia juntos).
 $('#gruposRotacionCheckSi').click(function () {
     $('.gruposRotacionSi').css("visibility", "visible");
@@ -45,6 +44,8 @@ $('#gruposBtn').click(function () {
 });
 
 // - Ingresar lista de medicos que harán guardias y permitir visualizar datos en tabla. Dar la opcion de eliminar nombre de la lista.
+// - Permitir que cada medico indique un dia en particular en el cual no quiere estar de guardia.
+// - Preguntar si desea crear grupos de rotación para que los médicos de dicho grupo no realicen guardias los mismos días y tomar datos de los usuarios cargados (Para que no estén postguardia juntos).
 $('#medico__cargar').click(function () {
     const obj = new DatosMedico(($('#medico__nombre').val()), parseInt(($('#medico__guardiasSemana').val())), parseInt(($('#medico__guardiasFinde').val())), ($('#medico__grupo').val()), ($('#medico__diaLibre').val()), ($('#medico__diaFijo').val()), ($('#medico__sector').val()))
 
@@ -73,9 +74,19 @@ $('#medico__cargar').click(function () {
 
     })
 });
-// Crear array con medicos que estan rotando en mismo sector
 
-// Seleccionar medicos aleatorios desde array gener
+// Crear array con medicos que estan rotando en mismo grupo
+//crearGrupos();
+
+// Seleccionar medicos aleatorios desde array y comprobar si cumplen CONDICIONES:
+// 1- Cada médico debe realizar el numero de guardias de semana y finde que le corresponde. Si sobra gente generar nota en resumen de que tal persona debe tantas guardias para el mes que viene.
+// 2- Permitir dias fijos de guardia.
+// 3- No se puede estar dos días seguidos de guardia.
+// 4- Si dos personas estan en el mismo grupo de rotación, no pueden realiza guardias juntas. 
+// 5- Se debe cumplir con la cantidad de medicos que deben estar de guardia el mismo dia (en caso de que haya mas de un sector de guardia para cubrir)
+// 6- Hay medicos que solo deben estar de guardia en el mismo sector todo el mes.
+// 7- En caso de que falten medicos empezar a eliminar medicos extras por sector al azar.
+
 $('#btn-vamos').click(function () {
     for (let i = 0; i < arrayDias.length; i++) {
         armarSectores(i)
@@ -89,6 +100,8 @@ $('#btn-vamos').click(function () {
     }
 })
 
+// - Completar sectores con medicos al azar si se cumplen todas las condiciones anteriores
+// - Permitir imprimir calendario.
 
 
 
