@@ -2,7 +2,8 @@ let arraySectores = [];
 let arrayGrupos = [];
 let arrayMedicos = [];
 const gruposMedicos = new Array(arrayGrupos.length);
-let fecha = new Date();
+const arrayDias = new Array();
+
 
 // CALENDARIO
 // Tomo año actual para setear disposicion de próximos meses

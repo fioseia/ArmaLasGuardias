@@ -77,8 +77,16 @@ $('#medico__cargar').click(function () {
 
 // Seleccionar medicos aleatorios desde array gener
 $('#btn-vamos').click(function () {
-    crearGrupos()
-    comprobarCondiciones()
+    for (let i = 0; i < arrayDias.length; i++) {
+        armarSectores(i)
+    }
+
+    console.log(arrayDias);
+    for (medico of arrayMedicos) {
+        console.log(medico.guardiasSemana)
+        console.log(medico.guardiasFinde);
+
+    }
 })
 
 

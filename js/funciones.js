@@ -25,6 +25,8 @@ function crearGrupos() {
 }
 
 
+
+
 function sumarGuardiasDia() {
     let medicosPorSector = 0;
     arraySectores.forEach(element => {
@@ -47,17 +49,57 @@ function elegirMedicoAleatorio(array) {
 // function mismoGrupo() {
 //     if 
 // }
-function comprobarGrupo() {
 
+
+function comprobarCondiciones(i) {
+    let dia = i;
+    let diaDeLaSemana = arrayDias[dia][1]
+    while (arrayDias[i][0] == false) {
+        let medico = elegirMedicoAleatorio(arrayMedicos)
+        let yaEstaDeGuardias = yaEstaDeGuardia(medico, dia);
+        let yaEstaDiaAnterior = diaAnterior(medico, dia)
+
+        if ((medico.guardiasSemana > 0) && (medico.guardiasFinde > 0) && (medico.diaLibre != (i + 1)) && (medico.diaFijo == diaDeLaSemana || medico.diaFijo == "ninguno") && (yaEstaDiaAnterior == false) && (yaEstaDeGuardias == false)) {
+            arrayDias[dia][2].push(medico.nombre)
+            arrayDias[i][0] = true;
+            restarGuardias(medico, dia)
+            continue;
+        } else {
+            break;
+        }
+    }
+
+};
+
+function restarGuardias(medico, i) {
+    if (arrayDias[i][1] == 6 || arrayDias[i][1] == 0) {
+        medico.guardiasFinde--;
+    } else {
+        medico.guardiasSemana--;
+    };
+};
+
+function armarSectores(d) {
+    let dia = d;
+    arrayDias[dia][2] = [];
+    for (let i = 0; i < arraySectores.length; i++) {
+        arrayDias[dia][0] = false;
+        comprobarCondiciones(dia)
+    };
+};
+
+function diaAnterior(medico, i) {
+    if (i >= 1) {
+        let diaAnterior = (i - 1)
+        return arrayDias[diaAnterior][2].includes(medico.nombre)
+    }
 }
 
-/*function comprobarCondiciones() {
-    for (let i = 0; i <= diasFinales.length; i++) {
-        fecha = setNewDate(2021, 07, i);
-        let diaSemanaCondiciones = fecha.getDay();
-        console.log(diaSemanaCondiciones);
-    }
-}*/
+function yaEstaDeGuardia(medico, i) {
+    return arrayDias[i][2].includes(medico.nombre)
+}
+
+
 
 
 // FUNCIONES CALENDARIO //
@@ -85,6 +127,7 @@ function lastMonth() {
     };
 
     setNewDate();
+
 };
 
 function nextMonth() {
@@ -95,6 +138,7 @@ function nextMonth() {
         currentYear++;
     };
     setNewDate();
+
 };
 
 function setNewDate() {
@@ -135,12 +179,14 @@ function getTotalDays(month) {
 };
 
 function writeMonth(month) {
+    arrayDias.length = 0;
     for (let i = startDay(); i > 0; i--) {
         calendarDay.innerHTML += `<div class= "calendar__item"></div>`;
     }
 
     for (let i = 1; i <= getTotalDays(month); i++) {
         calendarDay.innerHTML += `<div class= "calendar__day calendar__item" id="day${i}">${i}</div>`
+        arrayDias.push([false]);
     }
 };
 
@@ -149,6 +195,7 @@ function isWeekend(month) {
     for (let i = 1; i <= getTotalDays(month); i++) {
         currentDate.setFullYear(currentYear, currentMonth, i);
         diaSemana = currentDate.getDay();
+        arrayDias[i - 1][1] = diaSemana
         if (diaSemana == 0 || diaSemana == 6) {
             let weekendDay = document.getElementById('day' + i);
             weekendDay.classList.add('weekendDay')
