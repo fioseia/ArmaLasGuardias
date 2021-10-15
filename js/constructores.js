@@ -1,3 +1,4 @@
+// Constructor que permite crear Hospital para luego poder reutilizarlo en proximas sesiones
 function Hospital(nombre, arraySectores) {
     this.nombre = nombre;
     this.sectores = arraySectores;
@@ -9,14 +10,13 @@ function Hospital(nombre, arraySectores) {
     JSON.stringify(localStorage.setItem('sectores:', JSON.stringify(this.sectores)));
 };
 
-
-function DatosMedico(nombre, guardiasSemana, guardiasFinde, grupo, diaLibre, diaFijo, sector) {
+// Constructor que crea objetos medico dentro del ArrayMedicos
+function DatosMedico(nombre, guardiasSemana, guardiasFinde, grupo, diaLibre, sector) {
     this.nombre = nombre;
     this.guardiasSemana = guardiasSemana;
     this.guardiasFinde = guardiasFinde;
     this.grupo = grupo;
     this.diaLibre = diaLibre;
-    this.diaFijo = diaFijo;
     this.sector = sector;
 }
 

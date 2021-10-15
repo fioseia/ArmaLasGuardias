@@ -13,10 +13,14 @@ $('#hospitalName__nombre').attr('value', prevHospitalName);
 // - Permitir crear más de un sector de guardia y preguntar cuantas personas deben estar de guardia por sector por dia idealmente.
 
 $('#sectoresBtn').click(function () {
-    arraySectores.push({ nombre: ($('#sectorName').val()), numeroMedicos: parseInt(($('#sectorCantidadMedicos').val())) })
+    let numeroMedicos = parseInt(($('#sectorCantidadMedicos').val()))
+    for (let i = 0; i < numeroMedicos; i++) {
+        arraySectores.push($('#sectorName').val())
+    }
+
     $('#sectoresDatos').append(`
     <tr>
-    <td>${($('#sectorName').val())}</td>
+    <td id="sectorName">${($('#sectorName').val().toUpperCase())}</td>
     <td>${($('#sectorCantidadMedicos').val())}</td>
     `)
 
@@ -47,19 +51,18 @@ $('#gruposBtn').click(function () {
 // - Permitir que cada medico indique un dia en particular en el cual no quiere estar de guardia.
 // - Preguntar si desea crear grupos de rotación para que los médicos de dicho grupo no realicen guardias los mismos días y tomar datos de los usuarios cargados (Para que no estén postguardia juntos).
 $('#medico__cargar').click(function () {
-    const obj = new DatosMedico(($('#medico__nombre').val()), parseInt(($('#medico__guardiasSemana').val())), parseInt(($('#medico__guardiasFinde').val())), ($('#medico__grupo').val()), ($('#medico__diaLibre').val()), ($('#medico__diaFijo').val()), ($('#medico__sector').val()))
+    const obj = new DatosMedico(($('#medico__nombre').val()), parseInt(($('#medico__guardiasSemana').val())), parseInt(($('#medico__guardiasFinde').val())), ($('#medico__grupo').val()), ($('#medico__diaLibre').val()), ($('#medico__sector').val()))
 
-    $('#tablaDatos').append(`
+    $('#tablaDatosBody').append(`
     <tr class="${obj.grupo}"
         id="${obj.nombre}">
-        <td>${obj.nombre}</td>
+        <td>${obj.nombre.toUpperCase()}</td>
         <td>${obj.guardiasSemana}</td>
         <td>${obj.guardiasFinde}</td>
-        <td>${obj.grupo}</td>
+        <td>${obj.grupo.toUpperCase()}</td>
         <td>${obj.diaLibre}</td>
-        <td>${obj.diaFijo}</td>
-        <td>${obj.sector}</td>
-        <td><input type="button" value="Eliminar" id="eliminar${obj.nombre}"></td>
+        <td>${obj.sector.toUpperCase()}</td>
+        <td><button value="Eliminar" id="eliminar${obj.nombre}"><img src="img/trash.png" alt=""></button></td>
     </tr>
 `)
     arrayMedicos.push(obj)
@@ -87,16 +90,54 @@ $('#medico__cargar').click(function () {
 // 6- Hay medicos que solo deben estar de guardia en el mismo sector todo el mes.
 // 7- En caso de que falten medicos empezar a eliminar medicos extras por sector al azar.
 
-$('#btn-vamos').click(function () {
-    for (let i = 0; i < arrayDias.length; i++) {
-        armarSectores(i)
+$('#btnCrearCalendario').click(function () {
+    let diasDelMes = getTotalDays(currentMonth)
+    let guardiasPorHacer = arraySectores.length * diasDelMes
+    let findeDisponibles = guardiasDisponiblesFinde();
+    let semanaDisponibles = guardiasDisponiblesSemana();
+    let guardiasDisponiblesTotales = findeDisponibles + semanaDisponibles;
+
+    if (guardiasDisponiblesTotales >= guardiasPorHacer) {
+        for (sector of arraySectores) {
+            for (dia of arrayDias) {
+                comprobarCondiciones(dia[0])
+            }
+        }
+    } else {
+        console.log('No alcanzan los medicos. Se eliminara un medico del sector que mas tenga')
+        arraySectores.pop()
+        console.log(arraySectores);
+        let guardiasPorHacer = arraySectores.length * diasDelMes
+        console.log(guardiasPorHacer);
+        if (guardiasDisponiblesTotales >= guardiasPorHacer) {
+            for (sector of arraySectores) {
+                for (dia of arrayDias) {
+                    comprobarCondiciones(dia[0])
+                }
+            }
+        } else {
+            console.log('Sigue sin alcanzar. Se eliminara otro medico');
+            arraySectores.pop()
+            console.log(arraySectores);
+            let guardiasPorHacer = arraySectores.length * diasDelMes
+            console.log(guardiasPorHacer);
+            if (guardiasDisponiblesTotales >= guardiasPorHacer) {
+                for (sector of arraySectores) {
+                    for (dia of arrayDias) {
+                        comprobarCondiciones(dia[0])
+                    }
+                }
+            } else {
+                console.log('No se puede');
+            }
+        }
+
     }
 
-    console.log(arrayDias);
-    for (medico of arrayMedicos) {
-        console.log(medico.guardiasSemana)
-        console.log(medico.guardiasFinde);
+    console.log(`El calendario final de guardias es: ${arrayDias}`);
 
+    for (medico of arrayMedicos) {
+        console.log(`A ${JSON.stringify(medico.nombre)} le quedan ${JSON.stringify(medico.guardiasSemana)} guardias de semana y ${JSON.stringify(medico.guardiasFinde)} guardias de finde`);
     }
 })
 
@@ -104,6 +145,82 @@ $('#btn-vamos').click(function () {
 // - Permitir imprimir calendario.
 
 
+$('#link2').click(function (e) {
+    e.preventDefault();
+    $('#selectMonth').slideToggle();
+    $('#link2').animate({
+        fontSize: '1.2rem'
+    }, 1000)
+    $('#link3').animate({
+        fontSize: '1rem'
+    }, 1000)
+    $('#link4').animate({
+        fontSize: '1rem'
+    }, 1000)
+    $('#link5').animate({
+        fontSize: '1rem'
+    }, 1000)
+});
+
+$('#hospitalSubmit').click(function (e) {
+    e.preventDefault();
+    $('#hospitalInfo').slideToggle();
+})
+
+$('#link3').click(function (e) {
+    e.preventDefault();
+    $('#hospitalInfo').slideToggle();
+    $('#link2').animate({
+        fontSize: '1rem'
+    }, 1000)
+    $('#link3').animate({
+        fontSize: '1.2rem'
+    }, 1000)
+    $('#link4').animate({
+        fontSize: '1rem'
+    }, 1000)
+    $('#link5').animate({
+        fontSize: '1rem'
+    }, 1000)
+})
+
+$('#link4').click(function (e) {
+    e.preventDefault();
+    $('#gruposRotacionContainer').slideToggle();
+    $('#link2').animate({
+        fontSize: '1rem'
+    }, 1000)
+    $('#link3').animate({
+        fontSize: '1rem'
+    }, 1000)
+    $('#link4').animate({
+        fontSize: '1.2rem'
+    }, 1000)
+    $('#link5').animate({
+        fontSize: '1rem'
+    }, 1000)
+})
+
+$('#link5').click(function (e) {
+    e.preventDefault();
+    $('#datosMedicos').slideToggle();
+    $('#link2').animate({
+        fontSize: '1rem'
+    }, 1000)
+    $('#link3').animate({
+        fontSize: '1rem'
+    }, 1000)
+    $('#link4').animate({
+        fontSize: '1rem'
+    }, 1000)
+    $('#link5').animate({
+        fontSize: '1.2rem'
+    }, 1000)
+})
+
+$('gruposRotacionCheckSi').click(function () {
+    $('#gruposRotacionName').show()
+})
 
 
 

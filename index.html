@@ -1,91 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <title>Arma las guardias</title>
 </head>
 <body>
-    <h1>ShiftCalendar</h1>
+    <h1 id="titulo">ArmaLasGuardias</h1>
     <div class="mainContainer">
-        <div action="" class="selectMonth">
-            <div class="selectMonth__btn" id="prev-month">&#9664</div>
-            <div class="selectMonth__info" id="calendarMonth"></div>
-            <div class="selectMonth__info" id="calendarYear"></div>
-            <div class="selectMonth__btn" id="next-month">&#9654</div>
+        <div id="leftContainer">
+            <a id="link1" class="link">1- Selecciona el mes</a>
+            <a id="link2" class="link">2- Ingresa datos del Hospital</a>
+            <a id="link3" class="link">3- Arma grupos de rotacion</a>
+            <a id="link4" class="link">4- Ingresa los medicos</a>
+            <a id="link5" class="link">5- Corrobora los datos</a>
+            <div>
+                <input type="button" value="Crear" id="btnCrearCalendario">
+            </div>
         </div>
-        <form action="" id="hospitalNameForm">
-            <div>
-                <label for="hospitalName">Ingrese nombre del Hospital para guardar sus preferencias en un futuro</label>
-                <input type="text" name="hospitalName" id="hospitalName__nombre" placeholder="Nombre del Hospital">
+        <div id="rightContainer">
+            <div action="" class="selectMonth" id="selectMonth">
+                <h2>Selecciona el mes</h2>
+                <div id="mesSelector">
+                    <div class="selectMonth__btn" id="prev-month">&#9664</div>
+                    <div class="selectMonth__info" id="calendarMonth"></div>
+                    <div class="selectMonth__info" id="calendarYear"></div>
+                    <div class="selectMonth__btn" id="next-month">&#9654</div>
+                </div>
             </div>
-            <div>
-                <label for="sectorName">Nombre del sector (Ingrese al menos 1): 
-                <input type="text" name="sectorName" id="sectorName">
-                <label for="sectorCantidadMedicos">Cantidad de medicos de guardia en el sector:
-                <input type="number" name="sectorCantidadMedicos" id="sectorCantidadMedicos" placeholder="1"><br>
-                <input type="button" value="Cargar" id="sectoresBtn">
-            
-                <div class="sectoresDatos" id="sectoresDatos"></div>    
+            <div id="hospitalInfo">
+                <form action="" id="hospitalNameForm">
+                    <div id="hospitalInfoDiv">
+                        <div>
+                            <label for="hospitalName">Nombre del Hospital</label>
+                            <input type="text" name="hospitalName" id="hospitalName__nombre" placeholder="Nombre del Hospital"
+                            class="formInput">
+                        </div>
+                        <div>
+                            <label for="sectorName">Sectores donde se realizara guardias
+                                <input type="text" name="sectorName" id="sectorName" class="formInput" required>
+                        </div>
+                        <div>
+                            <label for="sectorCantidadMedicos">Cantidad de medicos de guardia en el sector:
+                                <input type="number" name="sectorCantidadMedicos" id="sectorCantidadMedicos" placeholder="1" min="1" class="formInput">
+                        </div>
+                        <div>
+                            <button type="button" value="Cargar" id="sectoresBtn">+</button>
+                        </div>
+                    </div>
+                    <div class="sectoresDatos" id="sectoresDatos"></div>    
+                    <input type="submit" value="Crear" id="hospitalSubmit">
+                </form>
             </div>
-            <input type="submit" value="Crear">
-        </form>
-        <div class="gruposRotacion" id="gruposRotacion">
-            <label for="gruposRotacionCheck">
-                <input type="radio" name="gruposRotacionCheck" id="gruposRotacionCheckNo" value="no" checked>No
-                <input type="radio" name="gruposRotacionCheck" id="gruposRotacionCheckSi" value="si">Si
-            </label>
+        <div id="gruposRotacionContainer">
+            <div class="gruposRotacion" id="gruposRotacionOptions">
+                <h2>Queres armar grupos de rotacion?</h2>
+                <label for="gruposRotacionCheck">
+                    <input type="radio" name="gruposRotacionCheck" id="gruposRotacionCheckNo" value="no" checked>No
+                    <input type="radio" name="gruposRotacionCheck" id="gruposRotacionCheckSi" value="si">Si
+                </label>
+            </div>
             <div class="gruposRotacionSi">
                 <input type="text" name="gruposRotacionName" id="gruposRotacionName">
                 <input type="button" value="Crear" id="gruposBtn">
             </div>
+           </div>
+            <div class="datosMedicos" id="datosMedicos">
+                <div class="inputsMedicos">
+                    <h3>Nombre</h3>
+                    <input type="text" name="medico__nombre" id="medico__nombre">
+                </div>
+                <div class="inputsMedicos">
+                    <h3>Guardias de Semana</h3>
+                    <input type="number" name="medico__guardiasSemana" id="medico__guardiasSemana"
+                    min="0">
+                </div>
+                <div class="inputsMedicos">
+                    <h3>Guardias de Finde</h3>
+                    <input type="number" name="medico__guardiasFinde" id="medico__guardiasFinde" min="0">
+                </div>
+                <div class="inputsMedicos">
+                    <h3>Grupo de Rotacion</h3>
+                    <select name="medico__grupo" id="medico__grupo">
+                        <option value="ninguno">Ninguno</option>
+                    </select>
+                </div>
+                <div class="inputsMedicos">
+                    <h3>Dia libre</h3>
+                    <input type="number" name="medico__diaLibre" id="medico__diaLibre" min="0"
+                    value="ninguno">
+                </div>
+                <div class="inputsMedicos">
+                    <h3>Sector fijo de guardia</h3>
+                    <select name="medico__sector" id="medico__sector">
+                        <option value="ninguno">Ninguno</option>                
+                    </select>
+                </div>
+                <input type="button" value="Cargar" id="medico__cargar">
+            </div>
+            <div class="tablaDatos" id="tablaDatos">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Guardias de semana</th>
+                            <th>Guardias de finde</th>
+                            <th>Grupo de rotacion</th>
+                            <th>Dia libre del mes</th>
+                            <th>Sector fijo de guardia</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaDatosBody"></tbody>
+                </table>
+            </div>
         </div>
-        <div class="datosMedicos">
-            <input type="text" name="medico__nombre" id="medico__nombre">
-            <input type="number" name="medico__guardiasSemana" id="medico__guardiasSemana">
-            <input type="number" name="medico__guardiasFinde" id="medico__guardiasFinde">
-            <select name="medico__sector" id="medico__grupo">
-                <option value="ninguno">Ninguno</option>
-            </select>
-            <input type="number" name="medico__diaLibre" id="medico__diaLibre">
-            <select name="medico__diaFijo" id="medico__diaFijo">
-                <option value="ninguno">Ninguno</option>
-                <option value="1">Lunes</option>
-                <option value="2">Martes</option>
-                <option value="3">Miercoles</option>
-                <option value="4">Jueves</option>
-                <option value="5">Viernes</option>
-                <option value="6">Sabado</option>
-                <option value="0">Domingo</option>
-            </select>
-            <select name="medico__sector" id="medico__sector">
-                <option value="ninguno">Ninguno</option>                
-            </select>
-
-            <input type="button" value="Cargar" id="medico__cargar">
         </div>
-        <div class="tablaDatos" id="tablaDatos">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Guardias de semana</th>
-                        <th>Guardias de finde</th>
-                        <th>Grupo de rotacion</th>
-                        <th>Dia libre del mes</th>
-                        <th>Dia fijo de guardia</th>
-                        <th>Sector fijo de guardia</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-    </div>
-    <div>
-        <input type="button" value="vamos" id="btn-vamos">
-    </div>
+        
+        
+    
 
     <!-- Calendario -->
     <div class="calendar">
@@ -95,9 +132,6 @@
         </div>
         <table class="seccionesCalendario">
             <tr>
-                <td class="sectores">
-                    <div>Sectores</div>
-                </td>
                 <td>
                     <div class="calendar__week">
                         <div class="calendar__day calendar__item">L</div>
@@ -116,9 +150,9 @@
     
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/funciones.js"></script>
-    <script src="js/constructores.js"></script>
     <script src="js/globales.js"></script>
+    <script src="js/constructores.js"></script>
+    <script src="js/funciones.js"></script>
     <script src="js/calendar.js"></script>
     <script src="js/main.js"></script>
 </body>

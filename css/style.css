@@ -1,3 +1,228 @@
-.gruposRotacionSi{
-    visibility:hidden;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+.mainContainer #datosMedicos #medico__cargar, .mainContainer #gruposRotacionContainer #gruposBtn, .mainContainer #hospitalInfo #hospitalSubmit, .mainContainer #hospitalInfo #hospitalNameForm #sectoresBtn {
+  background-color: #010101;
+  color: #f1f1f1;
+  padding: 2px;
+  display: block;
+  border-radius: 5px;
+  border: none;
+}
+.mainContainer #datosMedicos #medico__cargar:hover, .mainContainer #gruposRotacionContainer #gruposBtn:hover, .mainContainer #hospitalInfo #hospitalSubmit:hover, .mainContainer #hospitalInfo #hospitalNameForm #sectoresBtn:hover {
+  background-color: #f1f1f1;
+  color: #000;
+}
+
+/*----------------INDEX-------------------*/
+#titulo {
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.05rem;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 20px;
+  color: #f73d28;
+}
+
+.mainContainer {
+  height: 70vh;
+  width: 80vw;
+  margin: 50px auto;
+  background-color: yellow;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+.mainContainer #leftContainer {
+  width: 30%;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.05rem;
+  font-size: 1rem;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.mainContainer #leftContainer #btnCrearCalendario {
+  background-color: #f1f1f1;
+  color: #010101;
+  padding: 5px;
+  display: block;
+  border-radius: 5px;
+  border: none;
+}
+.mainContainer #selectMonth {
+  height: 70vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.05rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+.mainContainer #selectMonth #mesSelector {
+  width: 450px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: baseline;
+  margin-top: 50px;
+}
+.mainContainer #selectMonth #mesSelector .selectMonth__btn {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.mainContainer #hospitalInfo {
+  height: 70vh;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.05rem;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 40px;
+}
+.mainContainer #hospitalInfo #hospitalNameForm {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.mainContainer #hospitalInfo #hospitalNameForm #hospitalInfoDiv {
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.mainContainer #hospitalInfo #hospitalNameForm .formInput {
+  outline: none;
+  border: 2px solid pink;
+}
+.mainContainer #hospitalInfo #hospitalNameForm #sectorCantidadMedicos {
+  width: 70px;
+}
+.mainContainer #hospitalInfo #hospitalNameForm #sectoresBtn {
+  float: right;
+  width: 50px;
+  font-size: 1rem;
+}
+.mainContainer #hospitalInfo #sectorName {
+  margin-right: 20px;
+  width: 80px;
+}
+.mainContainer #hospitalInfo #hospitalSubmit {
+  float: right;
+  width: 50px;
+  font-size: 0.9rem;
+  margin-left: auto;
+}
+.mainContainer #gruposRotacionContainer {
+  height: 70vh;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.05rem;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.mainContainer #gruposRotacionContainer #gruposRotacionOptions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.mainContainer #gruposRotacionContainer .gruposRotacionSi {
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.mainContainer #gruposRotacionContainer #gruposRotacionName {
+  border: 2px solid pink;
+  outline: none;
+}
+.mainContainer #gruposRotacionContainer #gruposBtn {
+  width: 50px;
+  font-size: 0.9rem;
+}
+.mainContainer #datosMedicos {
+  height: 70vh;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.05rem;
+  font-size: 0.8rem;
+  font-weight: 200;
+  padding: 30px;
+}
+.mainContainer #datosMedicos #medico__cargar {
+  margin-top: 20px;
+  padding: 4px;
+}
+.mainContainer #tablaDatos {
+  height: 70vh;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.05rem;
+  font-size: 0.8rem;
+  font-weight: 200;
+  padding: 20px;
+}
+.mainContainer #tablaDatos tbody {
+  text-align: center;
+}
+.mainContainer #tablaDatos tbody button {
+  background-color: #f1f1f1;
+  border: none;
+}
+
+/* --------- CALENDARIO ------------*/
+.calendar {
+  width: 80vw;
+  height: 80vh;
+  margin: auto;
+}
+.calendar .calendar__header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.calendar .seccionesCalendario {
+  width: 100%;
+  height: 100%;
+}
+.calendar .seccionesCalendario .sectores {
+  width: 10%;
+}
+.calendar .calendar__days {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  text-align: center;
+}
+.calendar .calendar__week {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+.calendar .calendar__item {
+  border: 1px solid #010101;
+  height: 75px;
+}
+
+/*# sourceMappingURL=style.css.map */
