@@ -6,124 +6,155 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&family=Anton&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Arma las guardias</title>
 </head>
 <body>
-    <h1 id="titulo">ArmaLasGuardias</h1>
-    <div class="mainContainer">
-        <div id="leftContainer">
-            <a id="link1" class="link">1- Selecciona el mes</a>
-            <a id="link2" class="link">2- Ingresa datos del Hospital</a>
-            <a id="link3" class="link">3- Arma grupos de rotacion</a>
-            <a id="link4" class="link">4- Ingresa los medicos</a>
-            <a id="link5" class="link">5- Corrobora los datos</a>
-            <div>
-                <input type="button" value="Crear" id="btnCrearCalendario">
+    <div class="contenedor">
+        <div class="navbutton__container">
+            <div class="navbutton__grid">
+                <a href="#dos" data-section="dos" class="navbutton"></a>
+                <a href="#tres" data-section="tres" class="navbutton"></a>
+                <a href="#cuatro" data-section="cuatro" class="navbutton"></a>
+                <a href="#cinco" data-section="cinco" class="navbutton"></a>
+                <a href="#seis" data-section="seis" class="navbutton"></a>
+                <a href="#siete" data-section="siete" class="navbutton"></a>
+                <a href="#ocho" data-section="ocho" class="navbutton"></a>
             </div>
         </div>
-        <div id="rightContainer">
-            <div action="" class="selectMonth" id="selectMonth">
-                <h2>Selecciona el mes</h2>
-                <div id="mesSelector">
+        <section id="uno" data-section="uno">
+            <h1 id="titulo">ArmaLasGuardias</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit eligendi eveniet dolorem deleniti quaerat ab, vitae iste nisi inventore. Eos vitae, saepe aperiam possimus praesentium eum dolorum, est nostrum libero ipsam nisi. Quisquam rerum pariatur vero aliquam eligendi distinctio itaque soluta error, fugit, exercitationem libero! Sint laboriosam rem omnis ea!</p>
+            <a href="#dos" class="section__btn" id="btn__uno" data-section="dos">Empecemos!</a>
+        </section>
+        <section id="dos" data-section="dos">
+            <h2>1. Selecciona el mes</h2>
+            <div class="contDos">
+                <div class="selectorMes">
                     <div class="selectMonth__btn" id="prev-month">&#9664</div>
                     <div class="selectMonth__info" id="calendarMonth"></div>
                     <div class="selectMonth__info" id="calendarYear"></div>
                     <div class="selectMonth__btn" id="next-month">&#9654</div>
                 </div>
-            </div>
+                <a href="#tres" class="section__btn" id="btn__dos" data-section="tres">Vamos con este</a>
+            </div>  
+        </section>
+        <section id="tres" data-section="tres">
+            <h2>2. Sectores de guardia</h2>
             <div id="hospitalInfo">
-                <form action="" id="hospitalNameForm">
-                    <div id="hospitalInfoDiv">
+                <div id="hospitalInfoDiv">
+                    <form action="" id="hospitalNameForm">
+                    <div>
+                        <label for="hospitalName">Ingresá el nombre del hospital: </label>
+                        <input type="text" name="hospitalName" id="hospitalName__nombre" placeholder="Nombre del Hospital"
+                        class="formInput">
+                    </div>
+                    </form>
+                    <div>
+                        <label for="sectorName">Ingresá los sectores donde se realizarán guardias: 
+                            <input type="text" name="sectorName" id="sectorName" class="formInput" required>
+                        <h4 id="sectorNameBtn">(dale enter)</h4>
+                    </div>
+                    <div class="sectoresDatos" id="sectoresDatos"></div>   
+                <button id="sectoresBtn"><a href="#cuatro" id="btn__tres"class="section__btn"  data-section="cuatro">Vamos con lo que sigue</a></button>
+                </div>
+            </div>
+        </section>
+        <section id="cuatro" data-section="cuatro">
+            <h2>3. Grupos de rotacion</h2>
+            <div class="contCuatro">
+                <div id="gruposRotacionContainer">
+                    <div class="gruposRotacion" id="gruposRotacionOptions">
+                        <h3>Queres armar grupos de rotación?</h3>
+                        <label for="gruposRotacionCheck">
+                            <input type="radio" name="gruposRotacionCheck" id="gruposRotacionCheckNo" value="no" checked>No
+                            <input type="radio" name="gruposRotacionCheck" id="gruposRotacionCheckSi" value="si">Si
+                        </label>
+                    </div>
+                    <div id="gruposRotacionSi" class="hidden">
+                        <input type="text" name="gruposRotacionName" id="gruposRotacionName">
+                        <input type="button" value="+" id="gruposBtn">
+                    </div>
+                </div>
+                <button id="btn__cuatro"><a href="#cinco" class="section__btn"  data-section="cinco">Seguimos</a></button>
+            </div>
+        </section>
+        <section id="cinco" data-section="cinco">
+            <h2>4. Datos de los medicos</h2>
+            <div class="contCinco">
+                <div class="datosMedicos" id="datosMedicos">
+                    <div class="inputsMedicos">
+                        <h3>Nombre</h3>
+                        <input type="text" name="medico__nombre" id="medico__nombre">
+                    </div>
+                    <div class="inputsMedicos">
+                        <h3>Guardias de Semana</h3>
                         <div>
-                            <label for="hospitalName">Nombre del Hospital</label>
-                            <input type="text" name="hospitalName" id="hospitalName__nombre" placeholder="Nombre del Hospital"
-                            class="formInput">
-                        </div>
+                            <span class="fas fa-minus"id="restGuardSemana"></span>
+                            <span id="medico__guardiasSemana">0</span>
+                            <span class="fas fa-plus" id="sumGuardSemana"></span>
+                        </div> 
+                    </div>
+                    <div class="inputsMedicos">
+                        <h3>Guardias de Finde</h3>
                         <div>
-                            <label for="sectorName">Sectores donde se realizara guardias
-                                <input type="text" name="sectorName" id="sectorName" class="formInput" required>
-                        </div>
-                        <div>
-                            <label for="sectorCantidadMedicos">Cantidad de medicos de guardia en el sector:
-                                <input type="number" name="sectorCantidadMedicos" id="sectorCantidadMedicos" placeholder="1" min="1" class="formInput">
-                        </div>
-                        <div>
-                            <button type="button" value="Cargar" id="sectoresBtn">+</button>
+                            <span class="fas fa-minus"id="restGuardFinde"></span>
+                            <span id="medico__guardiasFinde">0</span>
+                            <span class="fas fa-plus" id="sumGuardFinde"></span>
                         </div>
                     </div>
-                    <div class="sectoresDatos" id="sectoresDatos"></div>    
-                    <input type="submit" value="Crear" id="hospitalSubmit">
-                </form>
+                    <div class="inputsMedicos">
+                        <h3>Grupo de Rotacion</h3>
+                        <select name="medico__grupo" id="medico__grupo">
+                            <option value="ninguno">Ninguno</option>
+                        </select>
+                    </div>
+                    <div class="inputsMedicos">
+                        <h3>Dia libre</h3>
+                        <input type="number" name="medico__diaLibre" id="medico__diaLibre" min="0"
+                        value="ninguno" placeholder="1">
+                    </div>
+                    <div class="inputsMedicos">
+                        <h3>Sector fijo de guardia</h3>
+                        <select name="medico__sector" id="medico__sector">
+                            <option value="ninguno">Ninguno</option>                
+                        </select>
+                    </div>
+                    <input type="button" value="+" class="section__btn" id="medico__cargar">
+                </div>
+                <button id="btn__cinco"><a href="#seis"  class="section__btn" data-section="seis">Listo</a></button>
             </div>
-        <div id="gruposRotacionContainer">
-            <div class="gruposRotacion" id="gruposRotacionOptions">
-                <h2>Queres armar grupos de rotacion?</h2>
-                <label for="gruposRotacionCheck">
-                    <input type="radio" name="gruposRotacionCheck" id="gruposRotacionCheckNo" value="no" checked>No
-                    <input type="radio" name="gruposRotacionCheck" id="gruposRotacionCheckSi" value="si">Si
-                </label>
+        </section>
+        <section id="seis" data-section="seis">
+            <h2>5.Chequeá los datos</h2>
+            <div class="contSeis">
+                <div class="tablaDatos" id="tablaDatos">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Guardias de semana</th>
+                                <th>Guardias de finde</th>
+                                <th>Grupo de rotacion</th>
+                                <th>Dia libre del mes</th>
+                                <th>Sector fijo de guardia</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaDatosBody"></tbody>
+                    </table>
+                </div>
+                <button id="btn__seis" ><a href="#siete"class="section__btn" data-section="siete">Chequeado!</a></button>
             </div>
-            <div class="gruposRotacionSi">
-                <input type="text" name="gruposRotacionName" id="gruposRotacionName">
-                <input type="button" value="Crear" id="gruposBtn">
+        </section>
+        <section id="siete" data-section="siete">
+            <h2>6. ESTÁS LISTO?</h2>
+            <div>
+                <button id="btnCrearCalendario"><a href="#ocho"  class="section__btn" data-section="ocho">Mandale!</a></button>
             </div>
-           </div>
-            <div class="datosMedicos" id="datosMedicos">
-                <div class="inputsMedicos">
-                    <h3>Nombre</h3>
-                    <input type="text" name="medico__nombre" id="medico__nombre">
-                </div>
-                <div class="inputsMedicos">
-                    <h3>Guardias de Semana</h3>
-                    <input type="number" name="medico__guardiasSemana" id="medico__guardiasSemana"
-                    min="0">
-                </div>
-                <div class="inputsMedicos">
-                    <h3>Guardias de Finde</h3>
-                    <input type="number" name="medico__guardiasFinde" id="medico__guardiasFinde" min="0">
-                </div>
-                <div class="inputsMedicos">
-                    <h3>Grupo de Rotacion</h3>
-                    <select name="medico__grupo" id="medico__grupo">
-                        <option value="ninguno">Ninguno</option>
-                    </select>
-                </div>
-                <div class="inputsMedicos">
-                    <h3>Dia libre</h3>
-                    <input type="number" name="medico__diaLibre" id="medico__diaLibre" min="0"
-                    value="ninguno">
-                </div>
-                <div class="inputsMedicos">
-                    <h3>Sector fijo de guardia</h3>
-                    <select name="medico__sector" id="medico__sector">
-                        <option value="ninguno">Ninguno</option>                
-                    </select>
-                </div>
-                <input type="button" value="Cargar" id="medico__cargar">
-            </div>
-            <div class="tablaDatos" id="tablaDatos">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Guardias de semana</th>
-                            <th>Guardias de finde</th>
-                            <th>Grupo de rotacion</th>
-                            <th>Dia libre del mes</th>
-                            <th>Sector fijo de guardia</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tablaDatosBody"></tbody>
-                </table>
-            </div>
-        </div>
-        </div>
-        
-        
-    
-
+        </section>
+        <section id="ocho" data-section="ocho">
+            <h2>7. Calendario</h2>
     <!-- Calendario -->
     <div class="calendar">
         <div class="calendar__header">
@@ -133,23 +164,42 @@
         <table class="seccionesCalendario">
             <tr>
                 <td>
-                    <div class="calendar__week">
-                        <div class="calendar__day calendar__item">L</div>
-                        <div class="calendar__day calendar__item">M</div>
-                        <div class="calendar__day calendar__item">M</div>
-                        <div class="calendar__day calendar__item">J</div>
-                        <div class="calendar__day calendar__item">V</div>
-                        <div class="calendar__day calendar__item">S</div>
-                        <div class="calendar__day calendar__item">D</div>
+                    <div class="calendario">
+                        <h4 id="nombreMes"></h4>
+                        <div class="calendar__week">
+                            <div class="calendar__day calendar__item">L</div>
+                            <div class="calendar__day calendar__item">M</div>
+                            <div class="calendar__day calendar__item">M</div>
+                            <div class="calendar__day calendar__item">J</div>
+                            <div class="calendar__day calendar__item">V</div>
+                            <div class="calendar__day calendar__item">S</div>
+                            <div class="calendar__day calendar__item">D</div>
+                        </div>
+                        <div class="calendar__days" id="calendarDay"></div>
                     </div>
-                    <div class="calendar__days" id="calendarDay"></div>
                 </td>
             </tr>
         </table>
     </div>
+        </section>
+    </div>
     
+    <!--Toast-->    
+    <div id="toasts"></div>
+    
+    <!--Modal-->
+    <div class="modalContainer hideModal" id="modalCont">
+        <div class="modal">
+            <h3>Oh oh! No alcanzan los medicos para hacer las guardias del mes</h3>
+            <p>Te recomendamos eliminar un sector de guardia (o disminuir la cantidad de medicos en algun sector) o aumentar la cantidad de guardias por medico</p>
+            <button id="btnModal">Cerrar</button>
+        </div>
+    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/3402e673f0.js" crossorigin="anonymous"></script>
+    <script src="js/design.js"></script>
     <script src="js/globales.js"></script>
     <script src="js/constructores.js"></script>
     <script src="js/funciones.js"></script>

@@ -4,196 +4,530 @@
   box-sizing: border-box;
 }
 
-.mainContainer #datosMedicos #medico__cargar, .mainContainer #gruposRotacionContainer #gruposBtn, .mainContainer #hospitalInfo #hospitalSubmit, .mainContainer #hospitalInfo #hospitalNameForm #sectoresBtn {
-  background-color: #010101;
-  color: #f1f1f1;
-  padding: 2px;
-  display: block;
-  border-radius: 5px;
-  border: none;
-}
-.mainContainer #datosMedicos #medico__cargar:hover, .mainContainer #gruposRotacionContainer #gruposBtn:hover, .mainContainer #hospitalInfo #hospitalSubmit:hover, .mainContainer #hospitalInfo #hospitalNameForm #sectoresBtn:hover {
-  background-color: #f1f1f1;
-  color: #000;
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-/*----------------INDEX-------------------*/
-#titulo {
-  font-family: "Poppins", sans-serif;
-  letter-spacing: 0.05rem;
-  font-size: 2rem;
-  font-weight: 600;
-  text-align: center;
-  margin-top: 20px;
-  color: #f73d28;
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
-.mainContainer {
-  height: 70vh;
-  width: 80vw;
-  margin: 50px auto;
-  background-color: yellow;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: row;
-  overflow: hidden;
+html {
+  height: 100vh;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
-.mainContainer #leftContainer {
-  width: 30%;
-  background-color: black;
-  color: white;
+
+.navbutton__container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+.navbutton__container .navbutton__grid {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  transform: translateY(-50%);
+}
+.navbutton__container .navbutton {
+  width: 18px;
+  height: 18px;
+  background-color: transparent;
+  border: 3px solid #E6E154;
+  margin: 8px;
+  border-radius: 100%;
+  pointer-events: all;
+  position: relative;
+}
+.navbutton__container .navbutton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 2px;
+  border-radius: 100%;
+  background-color: transparent;
+  transition: all 250ms ease-in-out;
+}
+.navbutton__container .navbutton:hover::after {
+  background-color: rgba(230, 225, 84, 0.6);
+}
+.navbutton__container .navbutton:focus::after, .navbutton__container .navbutton.active {
+  background-color: #E6E154;
+}
+
+section {
+  height: 100vh;
+  width: 100vw;
+  scroll-snap-align: start;
   font-family: "Poppins", sans-serif;
   letter-spacing: 0.05rem;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 400;
+}
+
+#uno {
+  background-color: #31A4E6;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
 }
-.mainContainer #leftContainer #btnCrearCalendario {
-  background-color: #f1f1f1;
+#uno h1 {
+  display: inline-block;
+  align-self: center;
+  justify-self: unset;
+  margin-left: 20px;
+  font-family: "Anton", sans-serif;
+  letter-spacing: 0.05rem;
+  font-size: 8rem;
+  font-weight: 600;
+  -webkit-text-stroke: 3px #F0846E;
+  color: transparent;
+}
+#uno p {
+  width: 70%;
   color: #010101;
-  padding: 5px;
-  display: block;
-  border-radius: 5px;
+}
+
+#dos {
+  background-color: #E6E154;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#dos .contDos {
+  border-radius: 26px;
+  border: 3px solid black;
+  padding: 10px 30px;
+  height: 60vh;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 30px;
+}
+#dos h2 {
+  display: inline-block;
+  align-self: flex-start;
+  justify-self: unset;
+  margin-left: 20px;
+  font-family: "Anton", sans-serif;
+  letter-spacing: 0.05rem;
+  font-size: 7rem;
+  font-weight: 600;
+  -webkit-text-stroke: 3px black;
+  color: transparent;
+}
+#dos .selectorMes {
+  display: flex;
+  font-size: 3rem;
+  width: 100%;
+  height: auto;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+#dos a {
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 26px;
+  border: 3px solid black;
+  padding: 10px 30px;
+  color: #010101;
+}
+#dos a:active {
+  transform: scale(0.95);
+}
+
+#tres {
+  background-color: #B40BD6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#tres h2 {
+  display: inline-block;
+  align-self: flex-end;
+  justify-self: unset;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  font-family: "Anton", sans-serif;
+  letter-spacing: 0.05rem;
+  font-size: 6rem;
+  font-weight: 600;
+  -webkit-text-stroke: 3px black;
+  color: transparent;
+}
+#tres #hospitalInfoDiv {
+  padding: 10px 30px;
+  height: 60vh;
+  width: 80vw;
+  border-radius: 26px;
+  border: 3px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#tres #hospitalInfoDiv input {
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 2px;
+  text-align: center;
+  margin-left: 20px;
+}
+#tres #hospitalInfoDiv button {
+  background-color: transparent;
   border: none;
 }
-.mainContainer #selectMonth {
-  height: 70vh;
+#tres #hospitalInfoDiv #sectoresBtn {
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 26px;
+  border: 3px solid black;
+  padding: 8px 20px;
+  color: #010101;
+  background-color: transparent;
+}
+#tres #hospitalInfoDiv #sectoresBtn:active {
+  transform: scale(0.9);
+}
+#tres #hospitalInfoDiv #sectoresBtn a {
+  text-decoration: none;
+  color: #010101;
+}
+#tres #hospitalInfoDiv h4 {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+#tres .sectoresDatos {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 1rem;
+}
+#tres .sectoresDatos .sectorOption {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: baseline;
+}
+#tres .sectoresDatos .sectorOption div {
+  height: auto;
+  width: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+#tres .sectoresDatos .sectorOption div .fas {
+  font-size: 1.1rem;
+}
+
+#cuatro {
+  background-color: #F0846E;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#cuatro h2 {
+  display: inline-block;
+  align-self: flex-start;
+  justify-self: unset;
+  margin-left: 20px;
+  font-family: "Anton", sans-serif;
+  letter-spacing: 0.05rem;
+  font-size: 6rem;
+  font-weight: 600;
+  -webkit-text-stroke: 3px black;
+  color: transparent;
+}
+#cuatro .contCuatro {
+  border-radius: 26px;
+  border: 3px solid black;
+  padding: 10px 30px;
+  height: 60vh;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 30px;
+}
+#cuatro #gruposRotacionContainer {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 1.4rem;
+}
+#cuatro #gruposRotacionContainer .gruposRotacion {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: "Poppins", sans-serif;
-  letter-spacing: 0.05rem;
-  font-size: 1.2rem;
-  font-weight: 400;
-}
-.mainContainer #selectMonth #mesSelector {
-  width: 450px;
-  display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  align-items: baseline;
-  margin-top: 50px;
 }
-.mainContainer #selectMonth #mesSelector .selectMonth__btn {
-  font-size: 1.5rem;
+#cuatro #gruposRotacionContainer .gruposRotacion label {
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+#cuatro #gruposRotacionContainer #gruposRotacionName {
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 2px;
+  text-align: center;
+  margin-left: 20px;
+}
+#cuatro #gruposRotacionContainer #gruposBtn {
+  margin-left: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 1.4rem;
   cursor: pointer;
 }
-.mainContainer #hospitalInfo {
-  height: 70vh;
-  font-family: "Poppins", sans-serif;
-  letter-spacing: 0.05rem;
+#cuatro #btn__cuatro {
+  text-decoration: none;
   font-size: 1rem;
-  font-weight: 400;
-  padding: 40px;
+  border-radius: 26px;
+  border: 3px solid black;
+  padding: 8px 20px;
+  color: #010101;
+  background-color: transparent;
 }
-.mainContainer #hospitalInfo #hospitalNameForm {
-  height: 100%;
+#cuatro #btn__cuatro:active {
+  transform: scale(0.9);
+}
+#cuatro #btn__cuatro a {
+  text-decoration: none;
+  color: black;
+}
+#cuatro .hidden {
+  display: none;
+}
+
+#cinco {
+  background-color: #31A4E6;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
+  justify-content: space-evenly;
 }
-.mainContainer #hospitalInfo #hospitalNameForm #hospitalInfoDiv {
-  height: 150px;
+#cinco h2 {
+  display: inline-block;
+  align-self: flex-end;
+  justify-self: unset;
+  margin-right: 40px;
+  font-family: "Anton", sans-serif;
+  letter-spacing: 0.05rem;
+  font-size: 6rem;
+  font-weight: 600;
+  -webkit-text-stroke: 3px black;
+  color: transparent;
+}
+#cinco .contCinco {
+  border-radius: 26px;
+  border: 3px solid black;
+  padding: 15px 30px;
+  height: 60vh;
+  width: 80vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-.mainContainer #hospitalInfo #hospitalNameForm .formInput {
-  outline: none;
-  border: 2px solid pink;
-}
-.mainContainer #hospitalInfo #hospitalNameForm #sectorCantidadMedicos {
-  width: 70px;
-}
-.mainContainer #hospitalInfo #hospitalNameForm #sectoresBtn {
-  float: right;
-  width: 50px;
-  font-size: 1rem;
-}
-.mainContainer #hospitalInfo #sectorName {
-  margin-right: 20px;
-  width: 80px;
-}
-.mainContainer #hospitalInfo #hospitalSubmit {
-  float: right;
-  width: 50px;
-  font-size: 0.9rem;
-  margin-left: auto;
-}
-.mainContainer #gruposRotacionContainer {
-  height: 70vh;
-  font-family: "Poppins", sans-serif;
-  letter-spacing: 0.05rem;
-  font-size: 1rem;
-  font-weight: 400;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
-.mainContainer #gruposRotacionContainer #gruposRotacionOptions {
+#cinco .datosMedicos {
+  width: 80%;
+  height: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  margin-bottom: 30px;
+  justify-content: space-evenly;
+  align-items: center;
 }
-.mainContainer #gruposRotacionContainer .gruposRotacionSi {
-  width: 300px;
+#cinco .inputsMedicos {
+  width: 50%;
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
+}
+#cinco .inputsMedicos input, #cinco .inputsMedicos select {
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 2px;
+  text-align: center;
+}
+#cinco #medico__cargar {
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+#cinco #btn__cinco {
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 26px;
+  border: 3px solid black;
+  padding: 8px 20px;
+  color: #010101;
+  background-color: transparent;
+}
+#cinco #btn__cinco:active {
+  transform: scale(0.9);
+}
+#cinco #btn__cinco a {
+  text-decoration: none;
+  color: black;
+}
+
+#seis {
+  background-color: #E6E154;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-evenly;
 }
-.mainContainer #gruposRotacionContainer #gruposRotacionName {
-  border: 2px solid pink;
-  outline: none;
-}
-.mainContainer #gruposRotacionContainer #gruposBtn {
-  width: 50px;
-  font-size: 0.9rem;
-}
-.mainContainer #datosMedicos {
-  height: 70vh;
-  font-family: "Poppins", sans-serif;
+#seis h2 {
+  display: inline-block;
+  align-self: flex-start;
+  justify-self: unset;
+  margin-left: 20px;
+  font-family: "Anton", sans-serif;
   letter-spacing: 0.05rem;
-  font-size: 0.8rem;
-  font-weight: 200;
-  padding: 30px;
+  font-size: 6rem;
+  font-weight: 600;
+  -webkit-text-stroke: 3px black;
+  color: transparent;
 }
-.mainContainer #datosMedicos #medico__cargar {
-  margin-top: 20px;
-  padding: 4px;
+#seis .contSeis {
+  border-radius: 26px;
+  border: 3px solid black;
+  padding: 15px 30px;
+  height: 60vh;
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
-.mainContainer #tablaDatos {
-  height: 70vh;
-  font-family: "Poppins", sans-serif;
-  letter-spacing: 0.05rem;
-  font-size: 0.8rem;
-  font-weight: 200;
-  padding: 20px;
+#seis #tablaDatos {
+  overflow-y: scroll;
+  width: 100%;
 }
-.mainContainer #tablaDatos tbody {
+#seis #tablaDatos td {
   text-align: center;
 }
-.mainContainer #tablaDatos tbody button {
-  background-color: #f1f1f1;
-  border: none;
+#seis #tablaDatos span {
+  cursor: pointer;
+}
+#seis #btn__seis {
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 26px;
+  border: 3px solid black;
+  padding: 8px 20px;
+  color: #010101;
+  background-color: transparent;
+}
+#seis #btn__seis:active {
+  transform: scale(0.9);
+}
+#seis #btn__seis a {
+  text-decoration: none;
+  color: black;
+}
+
+#siete {
+  background-color: #B40BD6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+#siete h2 {
+  display: inline-block;
+  align-self: flex-end;
+  justify-self: unset;
+  margin-right: 50px;
+  font-family: "Anton", sans-serif;
+  letter-spacing: 0.05rem;
+  font-size: 6rem;
+  font-weight: 600;
+  -webkit-text-stroke: 3px black;
+  color: transparent;
+}
+#siete #btnCrearCalendario {
+  text-decoration: none;
+  font-size: 1.2rem;
+  border-radius: 26px;
+  border: 3px solid black;
+  padding: 15px 50px;
+  color: #010101;
+  background-color: transparent;
+}
+#siete #btnCrearCalendario:active {
+  transform: scale(0.9);
+}
+#siete #btnCrearCalendario a {
+  text-decoration: none;
+  color: black;
+}
+
+#ocho {
+  background-color: #F0846E;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100vh;
+}
+#ocho h2 {
+  display: inline-block;
+  align-self: flex-start;
+  justify-self: unset;
+  margin-left: 20px;
+  font-family: "Anton", sans-serif;
+  letter-spacing: 0.05rem;
+  font-size: 5rem;
+  font-weight: 600;
+  -webkit-text-stroke: 3px black;
+  color: transparent;
 }
 
 /* --------- CALENDARIO ------------*/
 .calendar {
   width: 80vw;
-  height: 80vh;
+  height: auto;
   margin: auto;
+  border-radius: 26px;
+  border: 3px solid black;
+  padding: 15px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 .calendar .calendar__header {
   width: 100%;
@@ -202,10 +536,20 @@
 }
 .calendar .seccionesCalendario {
   width: 100%;
-  height: 100%;
+  height: 80%;
 }
-.calendar .seccionesCalendario .sectores {
-  width: 10%;
+.calendar .seccionesCalendario td {
+  height: auto;
+}
+.calendar .seccionesCalendario .calendario {
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+}
+.calendar .seccionesCalendario .calendario #nombreMes {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 400;
 }
 .calendar .calendar__days {
   width: 100%;
@@ -222,7 +566,120 @@
 }
 .calendar .calendar__item {
   border: 1px solid #010101;
-  height: 75px;
+  height: auto;
+}
+.calendar .calendar__item .itemCalend {
+  font-size: 0.6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+/*----------- Toast -------------------*/
+#toasts {
+  position: fixed;
+  z-index: 1000;
+  height: 10vh;
+  bottom: 20px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 300px;
+  pointer-events: all;
+  font-family: "Poppins", sans-serif;
+}
+
+.toast {
+  background-color: #aaf3aa;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  bottom: 20px;
+  color: #469c46;
+  display: flex;
+  flex-direction: row;
+  align-content: baseline;
+  user-select: none;
+  border-left: 8px solid #469c46;
+}
+.toast .fa-check-circle {
+  font-size: 20px;
+  margin-right: 10px;
+}
+.toast.show {
+  animation: show_slide 1s ease forwards;
+}
+@keyframes show_slide {
+  0% {
+    transform: translateX(100%);
+  }
+  40% {
+    transform: translateX(-10%);
+  }
+  0% {
+    transform: translateX(0%);
+  }
+  0% {
+    transform: translateX(-10px);
+  }
+}
+
+/*----------Modal---------*/
+.modalContainer {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  font-family: "Poppins", sans-serif;
+}
+.modalContainer.showModal {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal {
+  background-color: #010101;
+  color: #f1f1f1;
+  width: 600px;
+  max-width: 100%;
+  height: 250px;
+  padding: 30px 50px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.modal h3 {
+  font-size: 20px;
+}
+.modal p {
+  opacity: 0.8;
+  font-size: 16px;
+}
+.modal button {
+  font-size: 1rem;
+  border-radius: 26px;
+  border: 3px solid #F0846E;
+  padding: 15px 100px;
+  color: #f1f1f1;
+  background-color: transparent;
+  text-align: center;
+  margin-top: 20px;
+}
+.modal button:active {
+  transform: scale(0.9);
 }
 
 /*# sourceMappingURL=style.css.map */

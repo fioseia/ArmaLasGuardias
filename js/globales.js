@@ -1,17 +1,14 @@
 let arraySectores = [];
 let arrayGrupos = ["ninguno"];
-let arrayMedicos = [];
-const gruposMedicos = new Array(arrayGrupos.length);
-const arrayDias = new Array();
-let noDiaLibre;
-let tieneGuardias;
-let esSuDiaFijo;
-let arrayMedicosFinal = [];
+let arrayMedicosLimpio = [];
+let arrayMedicos;
+const arrayDiasLimpio = new Array();
+let arrayDias;
 let diaDeLaSemana;
 let disponiblesFinde = 0;
 let disponiblesSemana = 0;
-const arrayHolidays = [];
-const GETURL = 'https://calendarific.com/api/v2/holidays?api_key=5f181a6795fac4ffcc25af69f96693d98175ec56&country=AR&year=2021&type=national'
+let arrayHolidays = [];
+const GETURL = 'https://calendarific.com/api/v2/holidays?api_key=43ac4ef62abc887dc928b448369b660a7f68589c&country=AR&year=2021&type=national'
 let feriadosDelMes;
 
 // CALENDARIO

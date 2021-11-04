@@ -4,240 +4,589 @@
     box-sizing: border-box;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+	input[type=number]::-webkit-outer-spin-button { 
+  	-webkit-appearance: none; 
+  	margin: 0; 
+	}
+
+input[type=number] { -moz-appearance:textfield; }
+
+// VARIABLES //
 
 $colores: 
 #f1f1f1, 
 #010101,  
-#917CA6,
-#CBAEF2,
-#BDA9D9,
-#D8F2D9,
-#0D0D0D;
-
+#E6E154,
+#F0846E,
+#ED00BF,
+#B40BD6,
+#31A4E6;
 
 @mixin textos($size, $weight) {
-	font-family: 'Roboto', sans-serif;
-	letter-spacing: 0.05rem;
-	font-size: $size;
-	font-weight: $weight;
-}
-
-@mixin titulos($size, $weight) {
 	font-family: 'Poppins', sans-serif;
 	letter-spacing: 0.05rem;
 	font-size: $size;
 	font-weight: $weight;
 }
 
-%boton {
-	background-color: #010101;
-	color: #f1f1f1;
-	padding: 2px;
-	display: block;    
-	border-radius: 5px;
-	border: none;        
-
-	&:hover {
-		background-color: #f1f1f1;
-		color: #000;
-	}
+@mixin titulos($size, $weight) {
+	font-family: 'Anton', sans-serif;
+	letter-spacing: 0.05rem;
+	font-size: $size;
+	font-weight: $weight;
 }
 
-%formInput{
-    background-color: pink;
-    border: none;
-    border-radius: 40px;
-    width:400px;
-    font-size: 1.2rem;
-    text-align: center;
-    color:white;
-    margin-right: 20px;
+$transicion: all 250ms ease-in-out;
+
+// INDEX //
+
+html{
+    height: 100vh;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
-/*----------------INDEX-------------------*/
+.navbutton__container{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+    pointer-events: none;
 
-#titulo{
-@include titulos(2rem,600);
-text-align: center;
-margin-top: 20px;
-color: rgb(247, 61, 40);
+    .navbutton__grid{
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        display: flex;
+        flex-direction: column;
+        transform: translateY(-50%)
+    }
+
+    .navbutton{
+        width: 18px;
+        height: 18px;
+        background-color: transparent;
+        border: 3px solid nth($colores, 3);
+        margin: 8px;
+        border-radius: 100%;
+        pointer-events: all;
+        position: relative;
+
+        &::after{
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;  
+            margin: 2px;
+            border-radius: 100%;
+            background-color: transparent;
+            transition: $transicion;
+        }
+
+        &:hover::after{
+            background-color:rgba(nth($colores,3), 0.6);
+        }
+
+        &:focus::after, &.active{
+            background-color:nth($colores,3);
+        }
+    }
 }
 
-.mainContainer{
-	height:70vh;
-	width:80vw;
-	margin: 50px auto;
-	background-color: yellow;
-	border-radius: 20px;
-	display: flex;
-	flex-direction: row;
-	overflow: hidden;
+section{
+    height: 100vh;
+    width: 100vw;
+    scroll-snap-align: start;
+    @include textos(16px, 400);
 
-	#leftContainer{
-		width:30%;
-		background-color: black;
-		color: white;
-		display: flex;
-		flex-direction: column;
-		padding: 20px;
-		@include titulos(1rem, 400);
-		display: flex;
-		flex-direction: column;
-		justify-content: space-evenly;
+}
 
-		#btnCrearCalendario{
-			background-color: #f1f1f1;
-			color: #010101;
-			padding: 5px;
-			display: block;    
-			border-radius: 5px;
-			border: none; 
-		}
+#uno{
+background-color: nth($colores,7);
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
+align-items: center;
 
-	}
+    h1{ 
+        display:inline-block;
+        align-self: center;
+        justify-self: unset;
+        margin-left: 20px;
+        @include titulos(8rem,600);
+        -webkit-text-stroke: 3px nth($colores,4);
+        color: transparent;
+    }
 
-	#selectMonth{
-		height: 70vh;
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		@include titulos(1.2rem,400);
+    p{
+        width: 70%;
+        color: nth($colores,2);
+    }
 
-		#mesSelector{
-			width:450px;
-			display: flex;
-			flex-direction: row;
-			justify-content: space-evenly;
-			align-items: baseline;
-			margin-top: 50px;
+}
 
-			.selectMonth__btn{
-				font-size: 1.5rem;
-				cursor: pointer;
-			}
-		}
-	}
+#dos{
+    background-color: nth($colores,3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-	#hospitalInfo{
-		height: 70vh;
-		@include titulos(1rem,400);
-		padding: 40px;
+    .contDos{
+        border-radius: 26px;
+        border: 3px solid black;
+        padding: 10px 30px;
+        height: 60vh;
+        width: 80vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        padding: 30px;
+    }
 
-		#hospitalNameForm{
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-evenly;
-		align-items: center;
+    h2{
+        display:inline-block;
+        align-self: flex-start;
+        justify-self: unset;
+        margin-left: 20px;
+        @include titulos(7rem,600);
+        -webkit-text-stroke: 3px black;
+        color: transparent;
+    }
 
-			#hospitalInfoDiv{
-				height: 150px;
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-			}
+    .selectorMes{
+    display: flex;
+    font-size:3rem;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-evenly;
+    }
 
-		.formInput{
-			outline:none;
-			border: 2px solid pink;
-		}		
-		
-		#sectorCantidadMedicos{
-			width: 70px;
-		}
-			
-		#sectoresBtn{
-			float: right;
-			@extend %boton;
-			width: 50px;
-			font-size: 1rem;
-			}
-		}
-	
-		#sectorName{
-			margin-right: 20px;
-			width:80px;
-		}
-			
-		#hospitalSubmit{
-			float: right;
-			@extend %boton;
-			width: 50px;
-			font-size: 0.9rem;
-			margin-left: auto;
-		}	
-	}
+    a{
+        text-decoration: none;
+        font-size: 1rem;
+        border-radius: 26px;
+        border: 3px solid black;
+        padding: 10px 30px;
+        color: nth($colores,2);
 
-	#gruposRotacionContainer{
-		height: 70vh;
-		@include titulos(1rem,400);
-		padding: 40px;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
+        &:active{
+            transform: scale(0.95)
+        }
+    }
+}
 
-		#gruposRotacionOptions{
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			text-align: center;
-			margin-bottom: 30px;
-		}
+#tres{
+    background-color: nth($colores,6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-		.gruposRotacionSi{
-			width:300px;
-			display: flex;
-			flex-direction:row;
-			justify-content: space-evenly;
-		}
+    h2{
+        display:inline-block;
+        align-self: flex-end;
+        justify-self: unset;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        @include titulos(6rem,600);
+        -webkit-text-stroke: 3px black;
+        color: transparent;
+    }
 
-		#gruposRotacionName{
-			border:2px solid pink;
-			outline:none;
-		}
+    
+    #hospitalInfoDiv{
+        padding: 10px 30px;
+        height: 60vh;
+        width: 80vw;
+        border-radius: 26px;
+        border: 3px solid black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
 
-		#gruposBtn{
-			@extend %boton;
-			width: 50px;
-			font-size: 0.9rem;
-		}
-	}
+        input{
+            background-color: transparent;
+            border: 2px solid black;
+            border-radius: 4px;
+            padding: 2px;
+            text-align: center;
+            margin-left: 20px;
+        }
 
-	#datosMedicos{
-		height: 70vh;
-		@include titulos(0.8rem, 200);
-		padding: 30px;
+        button{
+            background-color: transparent;
+            border:none;
+        }
+    
+        #sectoresBtn{
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 26px;
+            border: 3px solid black;
+            padding: 8px 20px;
+            color: nth($colores,2);
+            background-color: transparent;
+    
+            &:active{
+                transform: scale(0.90);
+            }
+    
+            a{
+                text-decoration: none;
+                color: #010101;
+            }
+        }
 
-		#medico__cargar{
-			margin-top: 20px;
-			@extend %boton;
-			padding:4px;
-		}
-	}
+        h4{
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight:400;
+        }
+    }
 
-	#tablaDatos{
-		height: 70vh;
-		@include titulos(0.8rem, 200);
-		padding: 20px;
+    .sectoresDatos{
+        width: 100%;
+        height: 40%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size:1rem;
 
-		tbody{
-			text-align: center;
-			button{
-				background-color: #f1f1f1;
-				border: none;
-			}
-		}
-	}
+        .sectorOption{
+            width: 40%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: baseline;
+
+            div{ 
+                height:auto;
+                width: 100px;
+                display: flex;
+                justify-content: space-around;
+                align-items: center; 
+                border: 2px solid black;
+                border-radius: 5px;
+
+                .fas{
+                    font-size: 1.1rem;
+                }
+            }
+        }  
+    }
+}
+
+#cuatro{
+    background-color: nth($colores,4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2{
+        display:inline-block;
+        align-self: flex-start;
+        justify-self: unset;
+        margin-left: 20px;
+        @include titulos(6rem,600);
+        -webkit-text-stroke: 3px black;
+        color: transparent;
+    }
+
+    .contCuatro{
+        border-radius: 26px;
+        border: 3px solid black;
+        padding: 10px 30px;
+        height: 60vh;
+        width: 80vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        padding: 30px;
+    }
+
+    #gruposRotacionContainer{
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction:column;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size:1.4rem;
+
+        .gruposRotacion{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+
+            label{
+                width: 100px;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        #gruposRotacionName{
+            background-color: transparent;
+            border: 2px solid black;
+            border-radius: 4px;
+            padding: 2px;
+            text-align: center;
+            margin-left: 20px;
+        }
+
+        #gruposBtn{
+            margin-left: 10px;
+            background-color: transparent;
+            border:none;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+    }
+
+    #btn__cuatro{
+        text-decoration: none;
+        font-size: 1rem;
+        border-radius: 26px;
+        border: 3px solid black;
+        padding: 8px 20px;
+        color: nth($colores,2);
+        background-color: transparent;
+
+        &:active{
+            transform: scale(0.90);
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+    }
+
+    .hidden{
+        display: none;
+    }
+}
+
+#cinco{
+    background-color: nth($colores,7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    h2{
+        display:inline-block;
+        align-self: flex-end;
+        justify-self: unset;
+        margin-right: 40px;
+        @include titulos(6rem,600);
+        -webkit-text-stroke: 3px black;
+        color: transparent;
+    }
+
+    .contCinco{
+        border-radius: 26px;
+        border: 3px solid black;
+        padding: 15px 30px;
+        height: 60vh;
+        width: 80vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .datosMedicos{
+        width:80%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .inputsMedicos{
+        width: 50%;
+        display: flex;
+        justify-content:space-between;
+
+        input, select{
+            background-color: transparent;
+            border: 2px solid black;
+            border-radius: 4px;
+            padding: 2px;
+            text-align: center;
+        }
+    }
+
+    #medico__cargar{
+        background-color: transparent;
+        border:none;
+        font-size: 2rem;
+        cursor: pointer;
+    }
+
+    #btn__cinco{
+        text-decoration: none;
+        font-size: 1rem;
+        border-radius: 26px;
+        border: 3px solid black;
+        padding: 8px 20px;
+        color: nth($colores,2);
+        background-color: transparent;
+
+        &:active{
+            transform: scale(0.90);
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+    }
+}
+
+#seis{
+    background-color: nth($colores,3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    h2{
+        display:inline-block;
+        align-self: flex-start;
+        justify-self: unset;
+        margin-left: 20px;
+        @include titulos(6rem,600);
+        -webkit-text-stroke: 3px black;
+        color: transparent;
+    }
+
+    .contSeis{
+        border-radius: 26px;
+        border: 3px solid black;
+        padding: 15px 30px;
+        height: 60vh;
+        width: 80vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #tablaDatos{
+        overflow-y: scroll;
+        width:100%;
+
+        td{
+            text-align: center;
+        }
+
+        span{
+            cursor: pointer;
+        }
+    }
+
+    #btn__seis{
+        text-decoration: none;
+        font-size: 1rem;
+        border-radius: 26px;
+        border: 3px solid black;
+        padding: 8px 20px;
+        color: nth($colores,2);
+        background-color: transparent;
+
+        &:active{
+            transform: scale(0.90);
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+    }
+}
+
+#siete{
+    background-color: nth($colores,6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    h2{
+        display:inline-block;
+        align-self: flex-end;
+        justify-self: unset;
+        margin-right: 50px;
+        @include titulos(6rem,600);
+        -webkit-text-stroke: 3px black;
+        color: transparent;
+    }
+
+    #btnCrearCalendario{
+        text-decoration: none;
+        font-size: 1.2rem;
+        border-radius: 26px;
+        border: 3px solid black;
+        padding: 15px 50px;
+        color: nth($colores,2);
+        background-color: transparent;
+
+        &:active{
+            transform: scale(0.90);
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+    }
+}
+
+#ocho{
+    background-color: nth($colores,4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100vh;
+
+    h2{
+        display:inline-block;
+        align-self: flex-start;
+        justify-self: unset;
+        margin-left: 20px;
+        @include titulos(5rem,600);
+        -webkit-text-stroke: 3px black;
+        color: transparent;
+    }
 }
 
 /* --------- CALENDARIO ------------*/
 .calendar{
     width: 80vw;
-    height: 80vh;
+    height: auto;
     margin:auto;
+    border-radius: 26px;
+    border: 3px solid black;
+    padding: 15px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 
     .calendar__header{
         width: 100%;
@@ -247,11 +596,24 @@ color: rgb(247, 61, 40);
 
     .seccionesCalendario{
         width: 100%;
-        height: 100%;
+        height: 80%;
 
-        .sectores{
-            width: 10%;
+        td{
+            height:auto;
         }
+
+        .calendario{
+            height: 100%;
+            width: 100%;
+            padding: 10px;
+        
+        #nombreMes{
+            font-size: 2rem;
+            text-align: center;
+            font-weight: 400;
+        }
+        }
+
     }
 
     .calendar__days{
@@ -271,6 +633,127 @@ color: rgb(247, 61, 40);
 
 	.calendar__item{
 		border: 1px solid #010101;
-		height: 75px;
+		height: auto;
+
+        .itemCalend{
+            font-size:0.6rem;
+            display:flex;
+            flex-direction:row;
+            justify-content: space-evenly;
+        }
+	}
+}
+
+/*----------- Toast -------------------*/
+#toasts{
+	position: fixed;
+    z-index: 1000;
+    height: 10vh;
+    bottom: 20px;
+	right: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+    justify-content: flex-end;
+	width: 300px;
+    pointer-events:all;
+    font-family: 'Poppins', sans-serif;
+}
+
+.toast{
+	background-color: rgb(170, 243, 170);
+	padding: 1rem;
+	border-radius: 5px;
+	margin-bottom: 10px;
+    bottom: 20px;
+	color: rgb(70, 156, 70);
+	display: flex;
+	flex-direction: row;
+	align-content: baseline;
+	user-select: none;
+	border-left: 8px solid rgb(70, 156, 70);
+
+	.fa-check-circle{
+		font-size:20px;
+		margin-right: 10px;
+	}
+
+	&.show{
+		animation: show_slide 1s ease forwards;
+	}
+
+	@keyframes show_slide {
+		0%{
+			transform: translateX(100%);
+		}
+		40%{
+			transform: translateX(-10%);
+		}
+		0%{
+			transform: translateX(0%);
+		}
+		0%{
+			transform: translateX(-10px);
+		}
+	}
+}
+
+/*----------Modal---------*/
+.modalContainer{
+	background-color: rgba(0,0,0,0.3);
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	justify-content:center;
+	align-items:center;
+	opacity: 0;
+	pointer-events: none;
+    font-family: 'Poppins', sans-serif;
+	&.showModal{
+		opacity: 1;
+		pointer-events: auto;
+	}
+}
+
+.modal{
+	background-color:#010101;
+    color: #f1f1f1;
+	width: 600px;
+	max-width: 100%;
+	height: 250px;
+	padding: 30px 50px;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+
+	h3{
+		font-size: 20px;
+	}
+
+	p{
+		opacity: 0.8;
+		font-size: 16px;
+	}
+
+	button{
+        font-size: 1rem;
+        border-radius: 26px;
+        border: 3px solid nth($colores,4);
+        padding: 15px 100px;
+        color: nth($colores,1);
+        background-color: transparent;
+        text-align: center;
+        margin-top: 20px;
+
+        &:active{
+            transform: scale(0.90);
+        }
 	}
 }
