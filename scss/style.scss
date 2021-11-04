@@ -110,6 +110,11 @@ section{
 
 #uno{
 background-color: nth($colores,7);
+background-image: url(../img/pngmedico.png);
+background-size: 600px;
+background-repeat: no-repeat;
+background-position: bottom right;
+
 display: flex;
 flex-direction: column;
 justify-content: space-evenly;
