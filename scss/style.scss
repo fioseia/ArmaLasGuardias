@@ -121,13 +121,32 @@ align-items: center;
         justify-self: unset;
         margin-left: 20px;
         @include titulos(8rem,600);
-        -webkit-text-stroke: 3px nth($colores,4);
+        -webkit-text-stroke: 3px nth($colores,2);
         color: transparent;
     }
 
     p{
         width: 70%;
         color: nth($colores,2);
+    }
+
+    #btn__uno{
+        text-decoration: none;
+            font-size: 1rem;
+            border-radius: 26px;
+            border: 3px solid black;
+            padding: 8px 20px;
+            color: nth($colores,2);
+            background-color: transparent;
+    
+            &:active{
+                transform: scale(0.90);
+            }
+    
+            a{
+                text-decoration: none;
+                color: #010101;
+            }
     }
 
 }

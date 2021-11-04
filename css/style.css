@@ -94,11 +94,27 @@ section {
   letter-spacing: 0.05rem;
   font-size: 8rem;
   font-weight: 600;
-  -webkit-text-stroke: 3px #F0846E;
+  -webkit-text-stroke: 3px #010101;
   color: transparent;
 }
 #uno p {
   width: 70%;
+  color: #010101;
+}
+#uno #btn__uno {
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 26px;
+  border: 3px solid black;
+  padding: 8px 20px;
+  color: #010101;
+  background-color: transparent;
+}
+#uno #btn__uno:active {
+  transform: scale(0.9);
+}
+#uno #btn__uno a {
+  text-decoration: none;
   color: #010101;
 }
 
