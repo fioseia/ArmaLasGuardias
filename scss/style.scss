@@ -124,7 +124,6 @@ align-items: center;
         display:inline-block;
         align-self: center;
         justify-self: unset;
-        margin-left: 20px;
         @include titulos(8rem,600);
         -webkit-text-stroke: 3px nth($colores,2);
         color: transparent;
@@ -192,6 +191,7 @@ align-items: center;
     height: auto;
     flex-direction: row;
     justify-content: space-evenly;
+    cursor: pointer;
     }
 
     a{
@@ -593,79 +593,118 @@ align-items: center;
         align-self: flex-start;
         justify-self: unset;
         margin-left: 20px;
-        @include titulos(5rem,600);
+        @include titulos(4.5rem,600);
         -webkit-text-stroke: 3px black;
         color: transparent;
+    }
+
+    #downloadButton{
+        margin-top: 20px;
+        text-decoration: none;
+        font-size: 1rem;
+        border-radius: 26px;
+        border: 3px solid black;
+        padding: 5px 30px;
+        color: nth($colores,2);
+        background-color: transparent;
+        cursor: pointer;
+
+        &:active{
+            transform: scale(0.90);
+        }
+    }
+
+    .footer{
+        background-color:#010101;
+        width:100vw;
+        height:35px;
+        color: #f1f1f1;
+        text-align: center;
+        margin-top: 20px;
+
+        a{
+            text-decoration:underline;
+            color: #f1f1f1;
+            cursor: pointer;
+        }
     }
 }
 
 /* --------- CALENDARIO ------------*/
 .calendar{
     width: 80vw;
-    height: auto;
-    margin:auto;
-    border-radius: 26px;
-    border: 3px solid black;
-    padding: 15px 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    height: 85vh;
+    margin:0 auto;
+    overflow-y: scroll;
+    
 
-    .calendar__header{
-        width: 100%;
-        display: flex;
-        justify-content: center;
+    .calendario{
+        height:100%;
+        width:100%;
     }
 
     .seccionesCalendario{
         width: 100%;
-        height: 80%;
+        height: 100%;
+
+        tbody{
+            display: grid;
+            grid-template-rows: 1fr 0.8fr auto;
+            height: 100%;
+            background-color:#fff;
+            box-shadow: 
+                2px 0 0 0 #888, 
+                0 2px 0 0 #888, 
+                2px 2px 0 0 #888,
+                2px 0 0 0 #888 inset, 
+                0 2px 0 0 #888 inset;
+        }
+
+        tr{
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
 
         td{
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            height:100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        #nombreMes{
+            font-size:2rem;
+        }
+
+        .calendar__week{
+            display: grid;
+            grid-template-columns: repeat(7,1fr);
+            height: 100%;
+        }
+
+        .calendar__days{
+            display: grid;
+            grid-template-columns: repeat(7,1fr);
+            grid-template-rows: repeat(5,1fr);
+            min-height: 300px;
             height:auto;
         }
 
-        .calendario{
-            height: 100%;
-            width: 100%;
-            padding: 10px;
-        
-        #nombreMes{
-            font-size: 2rem;
-            text-align: center;
-            font-weight: 400;
+        .calendar__item{
+            box-shadow: 
+                2px 0 0 0 #888, 
+                0 2px 0 0 #888, 
+                2px 2px 0 0 #888,
+                2px 0 0 0 #888 inset, 
+                0 2px 0 0 #888 inset;
         }
-        }
-
     }
 
-    .calendar__days{
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(7,1fr);
-        grid-template-rows: repeat(5,1fr);
-        text-align: center;
+    .borde{
+        border: 1px solid #010101;
     }
-
-	.calendar__week{
-		width: 100%;
-        display: grid;
-        grid-template-columns: repeat(7,1fr);
-        text-align: center;
-	}
-
-	.calendar__item{
-		border: 1px solid #010101;
-		height: auto;
-
-        .itemCalend{
-            font-size:0.6rem;
-            display:flex;
-            flex-direction:row;
-            justify-content: space-evenly;
-        }
-	}
 }
 
 /*----------- Toast -------------------*/
@@ -685,17 +724,19 @@ align-items: center;
 }
 
 .toast{
-	background-color: rgb(170, 243, 170);
+	background-color: #f1f1f1;
 	padding: 1rem;
 	border-radius: 5px;
 	margin-bottom: 10px;
     bottom: 20px;
-	color: rgb(70, 156, 70);
+	color: rgb(128, 189, 128);
 	display: flex;
 	flex-direction: row;
 	align-content: baseline;
 	user-select: none;
-	border-left: 8px solid rgb(70, 156, 70);
+	border-left: 8px solid rgb(128, 189, 128);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
 
 	.fa-check-circle{
 		font-size:20px;
@@ -780,4 +821,144 @@ align-items: center;
             transform: scale(0.90);
         }
 	}
+}
+
+// MODAL FORM //
+.formContainer{
+	background-color: rgba(0,0,0,0.3);
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+    flex-direction: column;
+	justify-content:center;
+	align-items:center;
+	opacity: 0;
+	pointer-events: none;
+    font-family: 'Poppins', sans-serif;
+	&.showForm{
+		opacity: 1;
+		pointer-events: all;
+	}
+}
+#formulario{
+	background-color:#010101;
+    color: #f1f1f1;
+	width: 600px;
+	max-width: 100%;
+	height: 500px;
+	padding: 30px 50px;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+
+    .formHeader {
+        display: flex;
+
+        #closeForm {
+            background-color: transparent;
+            color: #f1f1f1;
+            border: none;
+            font-size:1.5rem;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+    }
+
+	p{
+		opacity: 1;
+		font-size: 16px;
+	}
+
+    input{
+        width: 80%;
+        text-align: center;
+
+        &#mensaje{
+            height: 400px;
+        }
+    }
+
+	#formBtn{
+        font-size: 1rem;
+        border-radius: 26px;
+        border: 3px solid nth($colores,4);
+        padding: 5px 50px;
+        color: nth($colores,1);
+        background-color: transparent;
+        text-align: center;
+        margin-top: 20px;
+        cursor: pointer;
+
+        &:active{
+            transform: scale(0.90);
+        }
+	}
+}
+
+////////// MEDIA QUERIES /////////////
+@media (min-width: 600px) {
+    .show_mb{
+        display:none;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    .show_mb{
+        display:inherit;
+    }
+
+    html{
+        scroll-snap-type: none;
+        overflow-x: hidden;
+    }
+
+    section{
+        height:100vh;
+        width:100vw;
+        scroll-snap-align: none;
+    }
+
+    #navbar-mb{
+        height: 80px;
+        background-color: #010101;
+        width: 100vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+
+        p{
+            color: #f1f1f1;
+            @include titulos(1.8rem, 600);
+            text-align: center;
+        }
+    }
+
+    #uno{
+        background-size: 600px;
+
+        h1{
+            font-size: 2.8rem;
+            -webkit-text-stroke: 2px nth($colores,2);
+            border: none;
+            content:"Arma las guardias";
+        }
+
+        #btn__uno{
+            transform: translateY(-300%);
+        }
+
+
+    }
 }

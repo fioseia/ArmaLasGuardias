@@ -228,7 +228,6 @@ function createModal() {
     modalCont.classList.add('showModal')
 }
 $('#btnModal').click(() => {
-    console.log('apretado');
     modalCont.classList.remove('showModal')
 })
 
@@ -349,14 +348,19 @@ function isWeekend(month) {
 
 // Funcion AJAX para utilizar API de feriados del año según el país y permitir asignar a dichos días el valor "feriado" en la posición [2] en el arrayDiasLimpios
 function getHolidays() {
+
     $.get(GETURL, function (respuesta, estado) {
 
         if (estado == "success") {
             let holidays = (respuesta.response.holidays);
             arrayHolidays = [];
+            if (currentMonth == 11) {
+                arrayHolidays.push({ mes: 12, dia: 24 }, { mes: 12, dia: 31 })
+            }
             holidays.filter(function (element) {
                 element.date.datetime.month
                 arrayHolidays.push({ mes: element.date.datetime.month, dia: element.date.datetime.day })
+
                 feriadosDelMes = arrayHolidays.filter(e => e.mes == (currentMonth + 1));
 
                 for (dia of feriadosDelMes) {
@@ -374,6 +378,49 @@ function getHolidays() {
         console.log(`El estado de la solicitud asíncrona es: ${JSON.stringify(estado)}`);
     })
 }
+
+// Funciones para descargar calendario y resumen de guardias
+
+$('#downloadButton').click(function () {
+    let descarga = document.getElementById('calendar');
+    let tabla = document.getElementById('seccionesCalendario')
+    let divs = tabla.children[0].children[2].children[0].children[0].children;
+
+    for (div of divs) {
+        div.classList.add('borde');
+    }
+
+    let opt = {
+        margin: 10,
+        filename: `${monthArray[currentMonth]}.pdf`,
+        html2canvas: { scale: 4 },
+        jsPDF: { orientation: 'landscape' }
+    };
+
+    html2pdf().set(opt).from(descarga).save();
+
+})
+
+// MODAL FORMULARIO //
+
+const formCont = document.querySelector('#modalForm');
+
+function showForm() {
+    formCont.classList.add('showForm')
+}
+
+$('#closeForm').click(() => {
+
+    formCont.classList.remove('showForm')
+})
+
+$('#linkForm').click(() => {
+    showForm();
+})
+
+// $('#formBtn').click((e) => {
+//     e.preventDefault;
+// })
 
 
 

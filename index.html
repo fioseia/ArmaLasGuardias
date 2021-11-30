@@ -4,13 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+			name="description"
+			content="Una solución para el momento de armar las guardias cada mes"
+		/>
+		<meta
+			name="keywords"
+			content="guardias, medicas, medicos, medico, turnos, residentes, sectores, guardia, calendario, organizar"
+		/>
+		<meta property="og:title" content="ArmaLasGuardias" />
+		<meta property="og:url" content="https://armalasguardias.000webhostapp.com/index.html" />
+		<meta property="og:descrption" content="Una solución para el problema de organizar las guardias mes a mes." />
+		<meta property="og:locale" content="es_ES" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&family=Anton&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
     <title>Arma las guardias</title>
 </head>
 <body>
+    <div id="navbar-mb" class="show_mb" data-role="header" data-position="fixed">
+        <p>ArmaLasGuardias</p>
+    </div>
     <div class="contenedor">
         <div class="navbutton__container">
             <div class="navbutton__grid">
@@ -155,30 +171,38 @@
         <section id="ocho" data-section="ocho">
             <h2>7. Calendario</h2>
     <!-- Calendario -->
-    <div class="calendar">
+    <div class="calendar" id="calendar">
         <div class="calendar__header">
             <div class="calendar__month" id="calendarMonth"></div>
             <div class="calendar__year" id="CalendarYear"></div>
         </div>
-        <table class="seccionesCalendario">
-            <tr>
-                <td>
-                    <div class="calendario">
-                        <h4 id="nombreMes"></h4>
+        <div class="calendario">
+            <table class="seccionesCalendario" id="seccionesCalendario">
+                <tr>
+                    <td><h4 id="nombreMes"></h4></td>
+                </tr>
+                <tr>
+                    <td>
                         <div class="calendar__week">
-                            <div class="calendar__day calendar__item">L</div>
-                            <div class="calendar__day calendar__item">M</div>
-                            <div class="calendar__day calendar__item">M</div>
-                            <div class="calendar__day calendar__item">J</div>
-                            <div class="calendar__day calendar__item">V</div>
-                            <div class="calendar__day calendar__item">S</div>
-                            <div class="calendar__day calendar__item">D</div>
+                            <div class="calendar__day calendar__item"><p>L</p></div>
+                            <div class="calendar__day calendar__item"><p>M</p></div>
+                            <div class="calendar__day calendar__item"><p>M</p></div>
+                            <div class="calendar__day calendar__item"><p>J</p></div>
+                            <div class="calendar__day calendar__item"><p>V</p></div>
+                            <div class="calendar__day calendar__item"><p>S</p></div>
+                            <div class="calendar__day calendar__item"><p>D</p></div>
                         </div>
-                        <div class="calendar__days" id="calendarDay"></div>
-                    </div>
-                </td>
-            </tr>
-        </table>
+                    </td>   
+                </tr>
+                <tr>
+                    <td><div class="calendar__days" id="calendarDay"></div></td>
+                </tr>     
+            </table>
+        </div>
+    </div>
+    <button id="downloadButton">Descargar</button>
+    <div class="footer">
+        <p>Creado con <span class="fas fa-heart"></span> por Fio Seia. Alguna sugerencia? <a id="linkForm">Dale Click!</a></p>
     </div>
         </section>
     </div>
@@ -186,13 +210,32 @@
     <!--Toast-->    
     <div id="toasts"></div>
     
-    <!--Modal-->
+    <!--Modal 1-->
     <div class="modalContainer hideModal" id="modalCont">
         <div class="modal">
             <h3>Oh oh! No alcanzan los medicos para hacer las guardias del mes</h3>
             <p>Te recomendamos eliminar un sector de guardia (o disminuir la cantidad de medicos en algun sector) o aumentar la cantidad de guardias por medico</p>
-            <button id="btnModal">Cerrar</button>
+            <button>Cerrar</button>
         </div>
+    </div>
+
+    <!--Modal Form-->
+        <div class="formContainer hideModal" id="modalForm">
+            <div id="formulario">
+                <div class="formHeader">
+                    <p>Hola! Dejame todo lo que tengas para aportar es bienvenido! =)</p>
+                    <button id="closeForm"><span class="fas fa-times"></span></button>
+                </div>
+                <form class="formContacto" action="formulario.php" method="POST" name="contact-form">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre" placeholder="JuanCarlo">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" placeholder="holajuancarlo@quehaces.com">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea name="mensaje" id="mensaje" placeholder="Tu mensaje"></textarea>
+                    <input type="submit" value="Enviar" id="formBtn">
+                </form>
+            </div>
     </div>
 
 

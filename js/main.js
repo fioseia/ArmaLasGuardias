@@ -74,6 +74,10 @@ function keyPressed(key) {
 // Creo un array con el nombre de los sectores (se repite el nombre dependiendo de la cantidad de médicos que deben realizar guardias en dicho sector) //
 const colecSectores = document.getElementsByClassName('sectorOption')
 $('#sectoresBtn').click(function () {
+    if (colecSectores.length == 0) {
+        alert('Ingrese al menos un sector de guardia')
+    }
+
     arraySectores = [];
     for (sector of colecSectores) {
         let sectorNom = sector.id;
@@ -82,12 +86,14 @@ $('#sectoresBtn').click(function () {
         for (let i = 0; i < sectCant; i++) {
             arraySectores.push(sectorNom.toUpperCase())
         }
+
+        // Ofrezco el nombre de los sectores ingresados como opciones al momento de ingresar los datos para permitir elegir si un médico debe realizar guardias en un sector fijo //
+        $('#medico__sector').append(`
+    <option value="${sectorNom.toUpperCase()}">${sectorNom.toUpperCase()}</option>
+    `)
     }
 
-    // Ofrezco el nombre de los sectores ingresados como opciones al momento de ingresar los datos para permitir elegir si un médico debe realizar guardias en un sector fijo //
-    $('#medico__sector').append(`
-    <option value="${($('#sectorName').val())}">${($('#sectorName').val())}</option>
-    `)
+
 })
 
 /// TERCERA SECCIÓN ///
@@ -106,8 +112,9 @@ $('#gruposRotacionCheckNo').click(function () {
 // Ofrezco nombre de los grupos de rotación como opciones al momento de ingresar los datos
 $('#gruposBtn').click(function () {
     $('#medico__grupo').append(`
-        <option class="${$('#gruposRotacionName').val()}"value="${$('#gruposRotacionName').val()}">${$('#gruposRotacionName').val()}</option>
+        <option class="${$('#gruposRotacionName').val()}"value="${$('#gruposRotacionName').val()}">${$('#gruposRotacionName').val().toUpperCase()}</option>
         `)
+    createToast();
 });
 
 //// CUARTA SECCIÓN ////
@@ -194,7 +201,6 @@ $('#medico__cargar').click(function () {
 //Al apretar botón en sección CINCO: 
 
 $('#btn__seis').click(function () {
-    console.log("btn1");
     // 1- Clono los arrayDias y arrayMedicos para poder modificarlos cada vez que apretamos el boton sin perder los arrays originales pudiendo resetear los valores de los clones según necesidad
     crearArraysModificables();
 
@@ -208,8 +214,8 @@ $('#btn__seis').click(function () {
     if (guardiasDisponiblesTotales >= guardiasPorHacer) {
         try {
             //Debo asignar un médico por cada sector de guardia y por cada día del mes
-            for (sector of arraySectores) {
-                for (dia of arrayDias) {
+            for (dia of arrayDias) {
+                for (sector of arraySectores) {
                     comprobarCondiciones(dia[0])
                 }
             }
@@ -269,7 +275,6 @@ $('#btnCrearCalendario').click(function () {
         // Si un médico seleccionó que sólo puede realizar guardias en un sector se lo asignará al mismo.
         for (sector of arraySectores) {
             for (element of arrayDias[index][3]) {
-                console.log(element);
                 if (element.sector == sector || element.sector == "ninguno") {
                     $(`#${dia + sector}`).append(`
                     <p>${(element.nombre).toUpperCase()}</p>
@@ -283,6 +288,9 @@ $('#btnCrearCalendario').click(function () {
         }
     }
 })
+
+
+
 
 
 

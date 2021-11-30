@@ -93,7 +93,6 @@ section {
   display: inline-block;
   align-self: center;
   justify-self: unset;
-  margin-left: 20px;
   font-family: "Anton", sans-serif;
   letter-spacing: 0.05rem;
   font-size: 8rem;
@@ -159,6 +158,7 @@ section {
   height: auto;
   flex-direction: row;
   justify-content: space-evenly;
+  cursor: pointer;
 }
 #dos a {
   text-decoration: none;
@@ -530,69 +530,93 @@ section {
   margin-left: 20px;
   font-family: "Anton", sans-serif;
   letter-spacing: 0.05rem;
-  font-size: 5rem;
+  font-size: 4.5rem;
   font-weight: 600;
   -webkit-text-stroke: 3px black;
   color: transparent;
+}
+#ocho #downloadButton {
+  margin-top: 20px;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 26px;
+  border: 3px solid black;
+  padding: 5px 30px;
+  color: #010101;
+  background-color: transparent;
+  cursor: pointer;
+}
+#ocho #downloadButton:active {
+  transform: scale(0.9);
+}
+#ocho .footer {
+  background-color: #010101;
+  width: 100vw;
+  height: 35px;
+  color: #f1f1f1;
+  text-align: center;
+  margin-top: 20px;
+}
+#ocho .footer a {
+  text-decoration: underline;
+  color: #f1f1f1;
+  cursor: pointer;
 }
 
 /* --------- CALENDARIO ------------*/
 .calendar {
   width: 80vw;
-  height: auto;
-  margin: auto;
-  border-radius: 26px;
-  border: 3px solid black;
-  padding: 15px 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  height: 85vh;
+  margin: 0 auto;
+  overflow-y: scroll;
 }
-.calendar .calendar__header {
+.calendar .calendario {
+  height: 100%;
   width: 100%;
-  display: flex;
-  justify-content: center;
 }
 .calendar .seccionesCalendario {
   width: 100%;
-  height: 80%;
+  height: 100%;
+}
+.calendar .seccionesCalendario tbody {
+  display: grid;
+  grid-template-rows: 1fr 0.8fr auto;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 2px 0 0 0 #888, 0 2px 0 0 #888, 2px 2px 0 0 #888, 2px 0 0 0 #888 inset, 0 2px 0 0 #888 inset;
+}
+.calendar .seccionesCalendario tr {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 .calendar .seccionesCalendario td {
-  height: auto;
-}
-.calendar .seccionesCalendario .calendario {
-  height: 100%;
+  display: inline-block;
   width: 100%;
-  padding: 10px;
-}
-.calendar .seccionesCalendario .calendario #nombreMes {
-  font-size: 2rem;
   text-align: center;
-  font-weight: 400;
+  height: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
-.calendar .calendar__days {
-  width: 100%;
+.calendar .seccionesCalendario #nombreMes {
+  font-size: 2rem;
+}
+.calendar .seccionesCalendario .calendar__week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  height: 100%;
+}
+.calendar .seccionesCalendario .calendar__days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  text-align: center;
-}
-.calendar .calendar__week {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  text-align: center;
-}
-.calendar .calendar__item {
-  border: 1px solid #010101;
+  min-height: 300px;
   height: auto;
 }
-.calendar .calendar__item .itemCalend {
-  font-size: 0.6rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+.calendar .seccionesCalendario .calendar__item {
+  box-shadow: 2px 0 0 0 #888, 0 2px 0 0 #888, 2px 2px 0 0 #888, 2px 0 0 0 #888 inset, 0 2px 0 0 #888 inset;
+}
+.calendar .borde {
+  border: 1px solid #010101;
 }
 
 /*----------- Toast -------------------*/
@@ -612,17 +636,19 @@ section {
 }
 
 .toast {
-  background-color: #aaf3aa;
+  background-color: #f1f1f1;
   padding: 1rem;
   border-radius: 5px;
   margin-bottom: 10px;
   bottom: 20px;
-  color: #469c46;
+  color: #80bd80;
   display: flex;
   flex-direction: row;
   align-content: baseline;
   user-select: none;
-  border-left: 8px solid #469c46;
+  border-left: 8px solid #80bd80;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8rem;
 }
 .toast .fa-check-circle {
   font-size: 20px;
@@ -700,6 +726,134 @@ section {
 }
 .modal button:active {
   transform: scale(0.9);
+}
+
+.formContainer {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  font-family: "Poppins", sans-serif;
+}
+.formContainer.showForm {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#formulario {
+  background-color: #010101;
+  color: #f1f1f1;
+  width: 600px;
+  max-width: 100%;
+  height: 500px;
+  padding: 30px 50px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#formulario .formHeader {
+  display: flex;
+}
+#formulario .formHeader #closeForm {
+  background-color: transparent;
+  color: #f1f1f1;
+  border: none;
+  font-size: 1.5rem;
+  margin-left: 20px;
+  cursor: pointer;
+}
+#formulario p {
+  opacity: 1;
+  font-size: 16px;
+}
+#formulario input {
+  width: 80%;
+  text-align: center;
+}
+#formulario input#mensaje {
+  height: 400px;
+}
+#formulario #formBtn {
+  font-size: 1rem;
+  border-radius: 26px;
+  border: 3px solid #F0846E;
+  padding: 5px 50px;
+  color: #f1f1f1;
+  background-color: transparent;
+  text-align: center;
+  margin-top: 20px;
+  cursor: pointer;
+}
+#formulario #formBtn:active {
+  transform: scale(0.9);
+}
+
+@media (min-width: 600px) {
+  .show_mb {
+    display: none;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .show_mb {
+    display: inherit;
+  }
+
+  html {
+    scroll-snap-type: none;
+    overflow-x: hidden;
+  }
+
+  section {
+    height: 100vh;
+    width: 100vw;
+    scroll-snap-align: none;
+  }
+
+  #navbar-mb {
+    height: 80px;
+    background-color: #010101;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+  }
+  #navbar-mb p {
+    color: #f1f1f1;
+    font-family: "Anton", sans-serif;
+    letter-spacing: 0.05rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  #uno {
+    background-size: 600px;
+  }
+  #uno h1 {
+    font-size: 2.8rem;
+    -webkit-text-stroke: 2px #010101;
+    border: none;
+    content: "Arma las guardias";
+  }
+  #uno #btn__uno {
+    transform: translateY(-300%);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
